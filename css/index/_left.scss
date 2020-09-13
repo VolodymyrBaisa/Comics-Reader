@@ -1,0 +1,64 @@
+#menuCategory {
+    position: relative;
+    cursor: pointer;
+    .icon {
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        height: 14%;
+        width: 14%;
+    }
+
+    .menu-title {
+        position: absolute;
+        top: 13%;
+        left: 38%;
+        color: #f4f4f4;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 2vw;
+    }
+}
+
+#menuAuthor,
+#menuType,
+#menuYearRelease,
+#menuStatus {
+    position: relative;
+    cursor: pointer;
+    .icon {
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        height: 14%;
+        width: 14%;
+        pointer-events: none;
+    }
+
+    .menu-title {
+        position: absolute;
+        top: 13%;
+        left: 38%;
+        color: #f4f4f4;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.9vw;
+        pointer-events: none;
+    }
+}
+
+#menuStatus {
+    transform: translateY(-40%);
+}
+
+#menuYearRelease {
+    transform: translateY(-80%);
+}
+
+#menuType {
+    transform: translateY(-120%);
+}
+
+#menuAuthor {
+    transform: translateY(-160%);
+}

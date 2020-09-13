@@ -1,4 +1,6 @@
 @import "_global.scss";
+@import "_left.scss";
+@import "_main.scss";
 
 $windowHeight: 276vh;
 
@@ -42,7 +44,23 @@ $windowHeight: 276vh;
 }
 
 .container {
+    @include flex(center, content, row);
     position: absolute;
-    top: 0;
+    top: 39px;
+    left: 28px;
+    right: 28px;
+    bottom: 39px;
     z-index: 1;
+    background: rgba(32, 33, 54, 0.9);
+    border-radius: 50px;
+
+    .left-panel {
+        flex: 1;
+        background: rgba(26, 25, 43, 0.9);
+        border-radius: 50px 0 0 50px;
+    }
+
+    .main {
+        flex: 3.3;
+    }
 }
