@@ -1,1 +1,48 @@
 @import "_global.scss";
+
+$windowHeight: 100vh;
+
+@mixin flex($justify, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+//Background
+.background {
+    @include flex(flex-start, stretch, row);
+    min-height: $windowHeight;
+    z-index: -1;
+    .part1 {
+        flex: 1;
+        background: url("../../img/Flash.png") no-repeat;
+        background-size: 100%;
+    }
+    .part2 {
+        flex: 1;
+        background: url("../../img/Deadpool.png") no-repeat;
+        background-size: 100%;
+    }
+    .part3 {
+        flex: 1;
+        background: url("../../img/Superman.png") no-repeat;
+        background-size: 100%;
+    }
+    .part4 {
+        flex: 1;
+        background: url("../../img/Iron-Man.png") no-repeat;
+        background-size: 100%;
+    }
+    .part5 {
+        flex: 1;
+        background: url("../../img/Ghost-Rider.png") no-repeat;
+        background-size: 100%;
+    }
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}

@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
-* + * {
-    margin-bottom: 1rem;
+html,
+body {
+    font-family: "Montserrat", sans-serif;
 }
