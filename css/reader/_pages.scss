@@ -1,0 +1,32 @@
+.book {
+    height: 100%;
+    width: 100%;
+    margin: 1.5% 0 3% 0;
+
+    .left-page {
+        margin-left: 3%;
+
+        div {
+            float: right;
+            background: #ffffff;
+            height: 100%;
+            width: 80%;
+            background: url(../../img/test-image-page-left.png) no-repeat;
+            background-size: 100% 100%;
+            box-shadow: -4px 4px 5px rgba(0, 0, 0, 1),
+                inset -20px 0 90px rgba(0, 0, 0, 0.5);
+        }
+    }
+    .right-page {
+        margin-right: 3%;
+        div {
+            background: #ffffff;
+            height: 100%;
+            width: 80%;
+            background: url(../../img/test-image-page-right.png) no-repeat;
+            background-size: 100% 100%;
+            box-shadow: 0 4px 5px rgba(0, 0, 0, 1),
+                inset 80px 0 100px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
