@@ -1,5 +1,3 @@
-@import "_global.scss";
-
 $windowHeight: 100vh;
 
 @mixin flex($justify, $align, $direction) {
@@ -8,6 +6,8 @@ $windowHeight: 100vh;
     align-items: $align;
     flex-direction: $direction;
 }
+
+@import "_global.scss";
 
 //Background
 .background {
@@ -42,7 +42,29 @@ $windowHeight: 100vh;
 }
 
 .container {
+    @include flex(center, content, row);
     position: absolute;
-    top: 0;
+    top: 39px;
+    left: 28px;
+    right: 28px;
+    bottom: 39px;
     z-index: 1;
+    min-height: 90vh;
+    background: rgba(32, 33, 54, 0.9);
+    border-radius: 3.5vw;
+    overflow: hidden;
+
+    .book-navigation {
+        @include flex(flex-start, flex-start, row);
+    }
+
+    .book {
+        @include flex(flex-start, flex-start, row);
+        .left-page {
+            height: 50%;
+        }
+
+        .right-page {
+        }
+    }
 }
