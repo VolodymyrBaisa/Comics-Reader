@@ -8,6 +8,8 @@ $windowHeight: 100vh;
 }
 
 @import "_global.scss";
+@import "_navigation";
+@import "_pages";
 
 //Background
 .background {
@@ -42,7 +44,7 @@ $windowHeight: 100vh;
 }
 
 .container {
-    @include flex(center, content, row);
+    @include flex(flex-start, center, column);
     position: absolute;
     top: 39px;
     left: 28px;
@@ -55,16 +57,18 @@ $windowHeight: 100vh;
     overflow: hidden;
 
     .book-navigation {
-        @include flex(flex-start, flex-start, row);
+        @include flex(center, center, row);
     }
 
     .book {
         @include flex(flex-start, flex-start, row);
+
         .left-page {
-            height: 50%;
+            flex: 1 1 auto;
         }
 
         .right-page {
+            flex: 1 1 auto;
         }
     }
 }

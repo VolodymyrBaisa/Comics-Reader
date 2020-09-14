@@ -1,0 +1,66 @@
+.book-navigation {
+    @include flex(flex-start, stretch, row);
+    background: #555365;
+    border-radius: 20px;
+    margin-top: 1.5%;
+    padding: 0.5%;
+
+    .first-page,
+    .before,
+    .next,
+    .last-page {
+        margin-top: 0.8%;
+        margin-right: 2vw;
+        cursor: pointer;
+    }
+
+    .first-page {
+        margin-left: 5%;
+        width: 3vw;
+    }
+
+    .before {
+        width: 2vw;
+    }
+
+    .next {
+        width: 2vw;
+    }
+
+    .last-page {
+        width: 3vw;
+    }
+
+    .chapter-selector {
+        @include flex(flex-start, stretch, row);
+        margin: 0 1vw 0 3vw;
+        position: relative;
+
+        select {
+            width: 25vw;
+            font-size: 1.3vw;
+            background: #404050;
+            overflow: none;
+            border: none;
+            border-radius: 4%/40%;
+            padding: 2% 5%;
+            color: #f4f4f4;
+            cursor: pointer;
+            /* reset */
+            margin: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .icon {
+            position: absolute;
+            top: 28%;
+            right: 4%;
+            width: 1.5vw;
+            pointer-events: none;
+        }
+    }
+}
