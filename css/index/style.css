@@ -8,10 +8,12 @@
 html,
 body {
   font-family: "Montserrat", sans-serif;
+  background: #000000;
 }
 
 #menuCategory {
   position: relative;
+  z-index: 10;
   cursor: pointer;
 }
 
@@ -68,23 +70,58 @@ body {
 }
 
 #menuStatus {
-  -webkit-transform: translateY(-40%);
-          transform: translateY(-40%);
+  -webkit-transform: translateY(-90%);
+          transform: translateY(-90%);
 }
 
 #menuYearRelease {
-  -webkit-transform: translateY(-80%);
-          transform: translateY(-80%);
+  -webkit-transform: translateY(-130%);
+          transform: translateY(-130%);
 }
 
 #menuType {
-  -webkit-transform: translateY(-120%);
-          transform: translateY(-120%);
+  -webkit-transform: translateY(-170%);
+          transform: translateY(-170%);
 }
 
 #menuAuthor {
-  -webkit-transform: translateY(-160%);
-          transform: translateY(-160%);
+  -webkit-transform: translateY(-210%);
+          transform: translateY(-210%);
+}
+
+.subMenuContainer .subMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  background: #5b596a;
+  z-index: 2;
+  margin-bottom: 1px;
+  padding: 4% 4% 4% 20%;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+.subMenuContainer .subMenu .menu-title {
+  color: #f4f4f4;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+.subMenuContainer .subMenu:last-child {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  padding: 4% 4% 20% 20%;
 }
 
 .main {
@@ -308,7 +345,7 @@ body {
   right: 28px;
   bottom: 39px;
   z-index: 1;
-  height: 265vh;
+  min-height: 265vh;
   background: rgba(32, 33, 54, 0.9);
   border-radius: 3.5vw;
   overflow: hidden;

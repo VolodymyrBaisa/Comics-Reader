@@ -51,7 +51,7 @@ $windowHeight: 276vh;
     right: 28px;
     bottom: 39px;
     z-index: 1;
-    height: 265vh;
+    min-height: 265vh;
     background: rgba(32, 33, 54, 0.9);
     border-radius: 3.5vw;
     overflow: hidden;
