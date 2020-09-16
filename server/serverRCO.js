@@ -16,7 +16,7 @@ let port = 80;
 const app = express();
 app.use(cors());
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname + "/index.html"));
+    res.sendFile(path.join(__dirname + "/indexRCO.html"));
 });
 
 //Search Title Page
@@ -122,6 +122,7 @@ app.get("/comic/:title", async (req, res) => {
     res.send(results);
 });
 
+//Get Comic by Chapter
 app.get("/comic/:title/:chapter", async (req, res) => {
     const url =
         serverQuery + comicQuery + req.params.title + "/" + req.params.chapter;
@@ -144,6 +145,7 @@ app.get("/comic/:title/:chapter", async (req, res) => {
     res.send(pages);
 });
 
+//Get Comic List by Page ID
 app.get("/comic-list/:page", async (req, res) => {
     const url = serverQuery + comicListQuery + comicPageQuery + req.params.page;
     const result = await fetch(url);
