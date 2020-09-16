@@ -35,9 +35,9 @@ class Comic {
 }
 //Function
 //Init
+const cat = new Categories();
 (() => {
     //Populate Left Menu
-    const cat = new Categories();
     const catList = cat.getSubCategoriesList();
     catList
         .then((res) => {
@@ -61,7 +61,6 @@ class Comic {
 //Populate SubCategories Left Menu
 function subCategory(subCat) {
     for (let item in subCat) {
-        //console.log(item, subCat[item]);
         const subMenu = $(`
         <div id="subMenuCategory" class="subMenu">
             <span data-index=${item} class="menu-title">${subCat[item]}</span>
@@ -75,13 +74,13 @@ function subCategory(subCat) {
 //OnCLicFunction SubCategory
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
-    console.log(catIndex);
-    //TODO: Add Code
+    const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
+    console.log(catIndex, getTitlesFromCategory);
+    loadComicsOnPage(getTitlesFromCategory);
 }
 
 //Load Comics
 function loadComicsOnPage(data) {
-    //console.log(data);
     for (let item in data) {
         const val = data[item];
         const titleCard = $(`
@@ -91,7 +90,6 @@ function loadComicsOnPage(data) {
         <div class="category">${val.type}</div>
     </div>
         `);
-        console.log(data[item]);
         titleCard.find(".image").css("background-image", `url(${val.img})`);
         bookTitlesEl.append(titleCard);
     }
