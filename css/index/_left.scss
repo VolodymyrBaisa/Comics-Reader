@@ -1,7 +1,8 @@
-#menuCategory {
+.menuCategory {
     position: relative;
     z-index: 10;
-    cursor: pointer;
+    pointer-events: none;
+
     .icon {
         position: absolute;
         top: 10%;
@@ -18,6 +19,15 @@
         font-style: normal;
         font-weight: bold;
         font-size: 2vw;
+    }
+
+    #menuCategory {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        z-index: 3;
     }
 }
 //Categories
@@ -48,39 +58,6 @@
     }
 }
 
-//Closed
-// #menuStatus {
-//     transform: translateY(-40%);
-// }
-
-// #menuYearRelease {
-//     transform: translateY(-80%);
-// }
-
-// #menuType {
-//     transform: translateY(-120%);
-// }
-
-// #menuAuthor {
-//     transform: translateY(-160%);
-// }
-
-//Open Categories
-#menuStatus {
-    transform: translateY(-90%);
-}
-#menuYearRelease {
-    transform: translateY(-130%);
-}
-
-#menuType {
-    transform: translateY(-170%);
-}
-
-#menuAuthor {
-    transform: translateY(-210%);
-}
-
 //SubMenu
 .subMenuContainer {
     .subMenu {
@@ -90,16 +67,15 @@
         z-index: 2;
         margin-bottom: 1px;
         padding: 4% 4% 4% 20%;
-        transform: translateY(-100%);
+        transform: translateY(-110%);
+        overflow: hidden;
+        cursor: pointer;
         .menu-title {
             color: #f4f4f4;
-            font-size: 1.5vw;
+            font-size: 1.3vw;
             font-weight: bold;
+            white-space: nowrap;
+            pointer-events: none;
         }
-    }
-
-    .subMenu:last-child {
-        transform: translateY(-50%);
-        padding: 4% 4% 20% 20%;
     }
 }

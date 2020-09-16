@@ -1,4 +1,4 @@
-$windowHeight: 276vh;
+$windowHeight: 925vh;
 
 @mixin flex($justify, $align, $direction) {
     display: flex;
@@ -51,7 +51,7 @@ $windowHeight: 276vh;
     right: 28px;
     bottom: 39px;
     z-index: 1;
-    min-height: 265vh;
+    min-height: 910vh;
     background: rgba(32, 33, 54, 0.9);
     border-radius: 3.5vw;
     overflow: hidden;

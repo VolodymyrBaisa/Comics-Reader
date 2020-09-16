@@ -11,13 +11,13 @@ body {
   background: #000000;
 }
 
-#menuCategory {
+.menuCategory {
   position: relative;
   z-index: 10;
-  cursor: pointer;
+  pointer-events: none;
 }
 
-#menuCategory .icon {
+.menuCategory .icon {
   position: absolute;
   top: 10%;
   left: 20%;
@@ -25,7 +25,7 @@ body {
   width: 14%;
 }
 
-#menuCategory .menu-title {
+.menuCategory .menu-title {
   position: absolute;
   top: 13%;
   left: 38%;
@@ -33,6 +33,15 @@ body {
   font-style: normal;
   font-weight: bold;
   font-size: 2vw;
+}
+
+.menuCategory #menuCategory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 3;
 }
 
 #menuAuthor,
@@ -69,26 +78,6 @@ body {
   pointer-events: none;
 }
 
-#menuStatus {
-  -webkit-transform: translateY(-90%);
-          transform: translateY(-90%);
-}
-
-#menuYearRelease {
-  -webkit-transform: translateY(-130%);
-          transform: translateY(-130%);
-}
-
-#menuType {
-  -webkit-transform: translateY(-170%);
-          transform: translateY(-170%);
-}
-
-#menuAuthor {
-  -webkit-transform: translateY(-210%);
-          transform: translateY(-210%);
-}
-
 .subMenuContainer .subMenu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -108,20 +97,18 @@ body {
   z-index: 2;
   margin-bottom: 1px;
   padding: 4% 4% 4% 20%;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
+  -webkit-transform: translateY(-110%);
+          transform: translateY(-110%);
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .subMenuContainer .subMenu .menu-title {
   color: #f4f4f4;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   font-weight: bold;
-}
-
-.subMenuContainer .subMenu:last-child {
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  padding: 4% 4% 20% 20%;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .main {
@@ -240,7 +227,8 @@ body {
 }
 
 .main .book-titles #titleCard .image {
-  background: url(../../img/test-image.png) center center no-repeat;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: 100% 100%;
   height: 23vw;
   border-radius: 10%/6%;
@@ -281,7 +269,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  min-height: 276vh;
+  min-height: 925vh;
   z-index: -1;
 }
 
@@ -345,7 +333,7 @@ body {
   right: 28px;
   bottom: 39px;
   z-index: 1;
-  min-height: 265vh;
+  min-height: 910vh;
   background: rgba(32, 33, 54, 0.9);
   border-radius: 3.5vw;
   overflow: hidden;
