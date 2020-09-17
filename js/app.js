@@ -75,12 +75,18 @@ function subCategory(subCat) {
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
     const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
-    console.log(catIndex, getTitlesFromCategory);
-    loadComicsOnPage(getTitlesFromCategory);
+    getTitlesFromCategory
+        .then((data) => {
+            loadComicsOnPage(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 //Load Comics
 function loadComicsOnPage(data) {
+    bookTitlesEl.empty();
     for (let item in data) {
         const val = data[item];
         const titleCard = $(`
@@ -90,7 +96,20 @@ function loadComicsOnPage(data) {
         <div class="category">${val.type}</div>
     </div>
         `);
-        titleCard.find(".image").css("background-image", `url(${val.img})`);
+        $.ajax({
+            url: val.img,
+            type: "HEAD",
+            error: () => {
+                titleCard
+                    .find(".image")
+                    .css("background-image", `url(../../img/No_Image.png)`);
+            },
+            success: () => {
+                titleCard
+                    .find(".image")
+                    .css("background-image", `url(${val.img})`);
+            },
+        });
         bookTitlesEl.append(titleCard);
     }
 }
