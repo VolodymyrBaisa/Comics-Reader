@@ -10,19 +10,18 @@ const bookTitlesEl = $(".book-titles");
 //Events
 //Class
 class Categories {
-    async getSubCategoriesList() {
-        return await $.ajax({
-            method: "GET",
-            url: `${api2Query}/getCategoriesList`,
-        });
-    }
-
-    async getSubCategoryComicList(subCatId) {
-        return await $.ajax({
-            method: "GET",
-            url: `${api2Query}/getCategories/${subCatId}`,
-        });
-    }
+    // async getSubCategoriesList() {
+    //     return await $.ajax({
+    //         method: "GET",
+    //         url: `${api2Query}/getCategoriesList`,
+    //     });
+    // }
+    // async getSubCategoryComicList(subCatId) {
+    //     return await $.ajax({
+    //         method: "GET",
+    //         url: `${api2Query}/getCategories/${subCatId}`,
+    //     });
+    // }
 }
 
 class Comic {
@@ -35,49 +34,51 @@ class Comic {
 }
 //Function
 //Init
-const cat = new Categories();
+// const cat = new Categories();
 (() => {
-    //Populate Left Menu
-    const catList = cat.getSubCategoriesList();
-    catList
-        .then((res) => {
-            subCategory(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    //Show Default Content
-    const com = new Comic();
-    const comList = com.getComicList(1);
-    comList
-        .then((res) => {
-            loadComicsOnPage(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    //Call categories API - Paul
+    //Call comic from API - Dannette
+    // //Populate Left Menu
+    // const catList = cat.getSubCategoriesList();
+    // catList
+    //     .then((res) => {
+    //         subCategory(res);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+    // //Show Default Content
+    // const com = new Comic();
+    // const comList = com.getComicList(1);
+    // comList
+    //     .then((res) => {
+    //         loadComicsOnPage(res);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
 })();
 
-//Populate SubCategories Left Menu
-function subCategory(subCat) {
-    for (let item in subCat) {
-        const subMenu = $(`
-        <div id="subMenuCategory" class="subMenu">
-            <span data-index=${item} class="menu-title">${subCat[item]}</span>
-        </div>
-        `);
-        subMenu.click(onClickSubCategory);
-        subMenuContainerEL.append(subMenu);
-    }
-}
+// //Populate SubCategories Left Menu
+// function subCategory(subCat) {
+//     for (let item in subCat) {
+//         const subMenu = $(`
+//         <div id="subMenuCategory" class="subMenu">
+//             <span data-index=${item} class="menu-title">${subCat[item]}</span>
+//         </div>
+//         `);
+//         subMenu.click(onClickSubCategory);
+//         subMenuContainerEL.append(subMenu);
+//     }
+// }
 
-//OnCLicFunction SubCategory
-function onClickSubCategory(e) {
-    const catIndex = $(e.target).find(".menu-title").data("index");
-    const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
-    console.log(catIndex, getTitlesFromCategory);
-    loadComicsOnPage(getTitlesFromCategory);
-}
+// //OnCLicFunction SubCategory
+// function onClickSubCategory(e) {
+//     const catIndex = $(e.target).find(".menu-title").data("index");
+//     const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
+//     console.log(catIndex, getTitlesFromCategory);
+//     loadComicsOnPage(getTitlesFromCategory);
+// }
 
 //Load Comics
 function loadComicsOnPage(data) {
