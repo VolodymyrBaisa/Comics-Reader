@@ -7,7 +7,13 @@ const api2Query = "https://project1api2.herokuapp.com";
 //Selector
 const subMenuContainerEL = $(".subMenuContainer");
 const bookTitlesEl = $(".book-titles");
+const searchEl = $("#search");
+const searchIconEl = $("#searchIcon");
+const searchSuggestionsEl = $("#searchSuggestions");
 //Events
+searchEl.keyup(onSearchSuggestions);
+searchIconEl.click(onSearchSuggestions);
+$(document).mouseup(onHideSearchSuggestList);
 //Class
 class Categories {
     async getSubCategoriesList() {
@@ -17,10 +23,10 @@ class Categories {
         });
     }
 
-    async getSubCategoryComicList(subCatId) {
+    async getSubCategoryComicList(subCatId, page) {
         return await $.ajax({
             method: "GET",
-            url: `${api2Query}/getCategories/${subCatId}`,
+            url: `${api2Query}/getCategories/${subCatId}/${page}`,
         });
     }
 }
@@ -30,6 +36,22 @@ class Comic {
         return await $.ajax({
             method: "GET",
             url: `${api1Query}/comic-list/${page}`,
+        });
+    }
+}
+
+class Search {
+    async getSearchSuggestions(val) {
+        return await $.ajax({
+            method: "GET",
+            url: `${api1Query}/search/${val}`,
+        });
+    }
+
+    async getSearchResults(val) {
+        return await $.ajax({
+            method: "GET",
+            url: `${api1Query}/comic/${val}`,
         });
     }
 }
@@ -74,7 +96,7 @@ function subCategory(subCat) {
 //OnCLicFunction SubCategory
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
-    const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
+    const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex, 1);
     getTitlesFromCategory
         .then((data) => {
             loadComicsOnPage(data);
@@ -96,6 +118,7 @@ function loadComicsOnPage(data) {
         <div class="category">${val.type}</div>
     </div>
         `);
+        //Check if image is valid else show no image png
         $.ajax({
             url: val.img,
             type: "HEAD",
@@ -110,6 +133,74 @@ function loadComicsOnPage(data) {
                     .css("background-image", `url(${val.img})`);
             },
         });
+        titleCard.click({ url: val.url }, onClickTitleCard);
         bookTitlesEl.append(titleCard);
     }
+}
+//Click On title Card
+function onClickTitleCard(e) {
+    let url = e.data.url;
+    location.href = `reader.html?comic=${url.substring(
+        url.lastIndexOf("/") + 1
+    )}`;
+}
+
+//Search For Comics
+const search = new Search();
+function onSearchSuggestions(e) {
+    search
+        .getSearchSuggestions(searchEl.val())
+        .then((data) => {
+            showSearchSuggestions(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    searchSuggestionsEl.addClass("active");
+}
+
+function showSearchSuggestions(data) {
+    searchSuggestionsEl.empty();
+    if (data !== "Not found") {
+        if (data.length > 0) {
+            for (let items in data) {
+                const item = data[items];
+                const element = $(
+                    `<div data-index=${item.data} class="search-suggestion-item">${item.title}</div>`
+                );
+                element.click(onSearchResult);
+                searchSuggestionsEl.append(element);
+            }
+            searchSuggestionsEl.addClass("active");
+        }
+    } else {
+        removeSuggestionPanel();
+    }
+}
+
+function onHideSearchSuggestList(e) {
+    if (
+        !searchSuggestionsEl.is(e.target) &&
+        searchSuggestionsEl.has(e.target).length === 0
+    ) {
+        removeSuggestionPanel();
+    }
+}
+
+function onSearchResult(e) {
+    removeSuggestionPanel();
+
+    const val = $(e.target).data("index");
+    const res = search.getSearchResults(val);
+    res.then((data) => {
+        loadComicsOnPage(data);
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
+function removeSuggestionPanel() {
+    searchSuggestionsEl.empty();
+    searchSuggestionsEl.removeClass("active");
 }

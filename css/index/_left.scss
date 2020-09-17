@@ -1,8 +1,9 @@
-.menuCategory {
+.menu-category {
     position: relative;
     z-index: 10;
+    width: calc(100% + 1px);
+    transform: translate(-1px, -1px);
     pointer-events: none;
-
     .icon {
         position: absolute;
         top: 10%;
@@ -14,7 +15,7 @@
     .menu-title {
         position: absolute;
         top: 13%;
-        left: 38%;
+        left: 39%;
         color: #f4f4f4;
         font-style: normal;
         font-weight: bold;
