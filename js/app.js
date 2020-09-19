@@ -1,16 +1,23 @@
 //API
 const api1Query = "https://project1api1.herokuapp.com";
 const api2Query = "https://project1api2.herokuapp.com";
-//API1
 
 //Variable
+const state = {
+    startPage: 1,
+    size: 14,
+    endPage: 1,
+};
 //Selector
+const comicListEl = $("#menuComicList");
 const subMenuContainerEL = $(".subMenuContainer");
 const bookTitlesEl = $(".book-titles");
 const searchEl = $("#search");
 const searchIconEl = $("#searchIcon");
 const searchSuggestionsEl = $("#searchSuggestions");
+const paginationContainerEl = $(".pagination-container");
 //Events
+comicListEl.click(onClickComicList);
 searchEl.keyup(onSearchSuggestions);
 searchIconEl.click(onSearchSuggestions);
 $(document).mouseup(onHideSearchSuggestList);
@@ -58,6 +65,8 @@ class Search {
 //Function
 //Init
 const cat = new Categories();
+const com = new Comic();
+
 (() => {
     //Populate Left Menu
     const catList = cat.getSubCategoriesList();
@@ -69,11 +78,14 @@ const cat = new Categories();
             console.log(err);
         });
     //Show Default Content
-    const com = new Comic();
+
     const comList = com.getComicList(1);
     comList
         .then((res) => {
             loadComicsOnPage(res);
+            clearPaginationButtons();
+            showPaginationOnPage(res);
+            showPaginationActiveButton(1);
         })
         .catch((err) => {
             console.log(err);
@@ -100,15 +112,32 @@ function onClickSubCategory(e) {
     getTitlesFromCategory
         .then((data) => {
             loadComicsOnPage(data);
+            clearPaginationButtons();
+            showPaginationOnPage(data);
+            showPaginationActiveButton(1);
         })
         .catch((err) => {
             console.log(err);
         });
 }
-
+//Click On Comic List
+function onClickComicList() {
+    const comList = com.getComicList(1);
+    comList
+        .then((res) => {
+            loadComicsOnPage(res);
+            clearPaginationButtons();
+            showPaginationOnPage(res);
+            showPaginationActiveButton(1);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 //Load Comics
 function loadComicsOnPage(data) {
     bookTitlesEl.empty();
+    data = data.length > 1 ? data[0] : data;
     for (let item in data) {
         const val = data[item];
         const titleCard = $(`
@@ -119,23 +148,26 @@ function loadComicsOnPage(data) {
     </div>
         `);
         //Check if image is valid else show no image png
-        $.ajax({
-            url: val.img,
-            type: "HEAD",
-            error: () => {
-                titleCard
-                    .find(".image")
-                    .css("background-image", `url(../../img/No_Image.png)`);
-            },
-            success: () => {
-                titleCard
-                    .find(".image")
-                    .css("background-image", `url(${val.img})`);
-            },
-        });
+        setImageIfValid(titleCard, val.img);
         titleCard.click({ url: val.url }, onClickTitleCard);
         bookTitlesEl.append(titleCard);
     }
+}
+//Check If Image Is Valid
+function setImageIfValid(card, url) {
+    $.ajax({
+        url: url,
+        type: "HEAD",
+        error: () => {
+            card.find(".image").css(
+                "background-image",
+                `url(../../img/No_Image.png)`
+            );
+        },
+        success: () => {
+            card.find(".image").css("background-image", `url(${url})`);
+        },
+    });
 }
 //Click On title Card
 function onClickTitleCard(e) {
@@ -148,16 +180,19 @@ function onClickTitleCard(e) {
 //Search For Comics
 const search = new Search();
 function onSearchSuggestions(e) {
-    search
-        .getSearchSuggestions(searchEl.val())
-        .then((data) => {
-            showSearchSuggestions(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    const val = searchEl.val();
+    if (val) {
+        search
+            .getSearchSuggestions(val)
+            .then((data) => {
+                showSearchSuggestions(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
-    searchSuggestionsEl.addClass("active");
+        searchSuggestionsEl.addClass("active");
+    }
 }
 
 function showSearchSuggestions(data) {
@@ -203,4 +238,64 @@ function onSearchResult(e) {
 function removeSuggestionPanel() {
     searchSuggestionsEl.empty();
     searchSuggestionsEl.removeClass("active");
+}
+//Page Buttons
+function showPaginationOnPage(data) {
+    data = data.length > 1 ? data[1] : data;
+    if (data) {
+        state.endPage = data.totalPages;
+        let maxLeft = state.startPage - Math.floor(state.size / 2);
+        let maxRight = state.startPage + Math.floor(state.size / 2);
+
+        if (maxLeft < 1) {
+            maxLeft = 1;
+            maxRight = state.size;
+        }
+
+        if (maxRight > state.endPage) {
+            maxLeft = state.endPage - (state.size - 1);
+            if (maxLeft < 1) {
+                maxLeft = 1;
+            }
+            maxRight = state.endPage;
+        }
+
+        for (let page = maxLeft; page <= maxRight; page++) {
+            paginationContainerEl.append(showButton(page, page, data));
+        }
+
+        if (state.startPage != 1) {
+            paginationContainerEl.prepend(showButton(1, "&#171;", data));
+        }
+
+        if (state.startPage != state.endPage) {
+            paginationContainerEl.append(
+                showButton(state.endPage, "&#187;", data)
+            );
+        }
+    }
+}
+
+function showButton(index, page, data) {
+    const button = $(
+        `<div data-index="${index}" class="page-button">${page}</div>`
+    );
+    button.click((e) => {
+        const id = $(e.target).data("index");
+        state.startPage = id;
+
+        clearPaginationButtons();
+        showPaginationOnPage(data);
+        //Add link
+        showPaginationActiveButton(id);
+    });
+    return button;
+}
+
+function showPaginationActiveButton(id) {
+    paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
+}
+
+function clearPaginationButtons() {
+    paginationContainerEl.empty();
 }

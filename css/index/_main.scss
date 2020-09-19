@@ -152,4 +152,29 @@
             }
         }
     }
+
+    .pagination-container {
+        @include flex(center, center, row);
+        margin: 1% 10% 2% 1%;
+
+        .page-button {
+            @include flex(center, center, column);
+            color: #f4f4f4;
+            width: 3vw;
+            height: 2.5vw;
+            font-size: 1.1vw;
+            margin-right: 0.1%;
+            background: #5b596a;
+            cursor: pointer;
+            &:hover {
+                color: #5b596a;
+                background: #f4f4f4;
+            }
+        }
+
+        .active {
+            color: #5b596a;
+            background: #f4f4f4;
+        }
+    }
 }

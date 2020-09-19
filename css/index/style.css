@@ -11,6 +11,7 @@ body {
   background: #000000;
 }
 
+.menu-comic-list,
 .menu-category {
   position: relative;
   z-index: 10;
@@ -20,6 +21,7 @@ body {
   pointer-events: none;
 }
 
+.menu-comic-list .icon,
 .menu-category .icon {
   position: absolute;
   top: 10%;
@@ -28,16 +30,20 @@ body {
   width: 14%;
 }
 
+.menu-comic-list .menu-title,
 .menu-category .menu-title {
   position: absolute;
-  top: 13%;
+  top: 16%;
   left: 39%;
   color: #f4f4f4;
   font-style: normal;
   font-weight: bold;
-  font-size: 2vw;
+  font-size: 1.7vw;
 }
 
+.menu-comic-list #menuComicList,
+.menu-comic-list #menuCategory,
+.menu-category #menuComicList,
 .menu-category #menuCategory {
   position: absolute;
   top: 0;
@@ -45,6 +51,17 @@ body {
   right: 0;
   height: 50%;
   z-index: 3;
+}
+
+#menuComicList {
+  pointer-events: initial;
+  cursor: pointer;
+}
+
+.menu-category {
+  -webkit-transform: translateY(-41%);
+          transform: translateY(-41%);
+  width: 100%;
 }
 
 #menuAuthor,
@@ -100,8 +117,8 @@ body {
   z-index: 2;
   margin-bottom: 1px;
   padding: 4% 4% 4% 20%;
-  -webkit-transform: translateY(-110%);
-          transform: translateY(-110%);
+  -webkit-transform: translateY(-200%);
+          transform: translateY(-200%);
   overflow: hidden;
   cursor: pointer;
 }
@@ -314,6 +331,56 @@ body {
   width: 15.2vw;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.main .pagination-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 1% 10% 2% 1%;
+}
+
+.main .pagination-container .page-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #f4f4f4;
+  width: 3vw;
+  height: 2.5vw;
+  font-size: 1.1vw;
+  margin-right: 0.1%;
+  background: #5b596a;
+  cursor: pointer;
+}
+
+.main .pagination-container .page-button:hover {
+  color: #5b596a;
+  background: #f4f4f4;
+}
+
+.main .pagination-container .active {
+  color: #5b596a;
+  background: #f4f4f4;
 }
 
 .background {

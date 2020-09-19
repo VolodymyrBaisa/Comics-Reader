@@ -1,5 +1,3 @@
-$windowHeight: 100%;
-
 @mixin flex($justify, $align, $direction) {
     display: flex;
     justify-content: $justify;
