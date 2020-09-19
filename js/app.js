@@ -8,6 +8,23 @@ const state = {
     size: 14,
     endPage: 1,
 };
+
+const source = {
+    list: 0,
+    category: 0,
+    categoryId: 17,
+
+    comicList: function () {
+        this.list = 1;
+        this.category = 0;
+    },
+
+    comicCategory: function (id) {
+        this.list = 0;
+        this.category = 1;
+        this.categoryId = id;
+    },
+};
 //Selector
 const comicListEl = $("#menuComicList");
 const subMenuContainerEL = $(".subMenuContainer");
@@ -77,8 +94,8 @@ const com = new Comic();
         .catch((err) => {
             console.log(err);
         });
-    //Show Default Content
 
+    //Show Default Content
     const comList = com.getComicList(1);
     comList
         .then((res) => {
@@ -86,6 +103,7 @@ const com = new Comic();
             clearPaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -115,6 +133,7 @@ function onClickSubCategory(e) {
             clearPaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
+            source.comicCategory(catIndex);
         })
         .catch((err) => {
             console.log(err);
@@ -129,6 +148,7 @@ function onClickComicList() {
             clearPaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -286,7 +306,30 @@ function showButton(index, page, data) {
 
         clearPaginationButtons();
         showPaginationOnPage(data);
-        //Add link
+
+        if (source.list) {
+            const comList = com.getComicList(id);
+            comList
+                .then((res) => {
+                    loadComicsOnPage(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (source.category) {
+            const catIndex = source.categoryId;
+            const getTitlesFromCategory = cat.getSubCategoryComicList(
+                catIndex,
+                id
+            );
+            getTitlesFromCategory
+                .then((data) => {
+                    loadComicsOnPage(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
         showPaginationActiveButton(id);
     });
     return button;
