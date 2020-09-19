@@ -100,7 +100,7 @@ const com = new Comic();
     comList
         .then((res) => {
             loadComicsOnPage(res);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
             source.comicList();
@@ -130,7 +130,7 @@ function onClickSubCategory(e) {
     getTitlesFromCategory
         .then((data) => {
             loadComicsOnPage(data);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
             source.comicCategory(catIndex);
@@ -145,7 +145,7 @@ function onClickComicList() {
     comList
         .then((res) => {
             loadComicsOnPage(res);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
             source.comicList();
@@ -210,7 +210,6 @@ function onSearchSuggestions(e) {
             .catch((err) => {
                 console.log(err);
             });
-
         searchSuggestionsEl.addClass("active");
     }
 }
@@ -250,6 +249,7 @@ function onSearchResult(e) {
     const res = search.getSearchResults(val);
     res.then((data) => {
         loadComicsOnPage(data);
+        removePaginationButtons();
     }).catch((err) => {
         console.log(err);
     });
@@ -304,7 +304,7 @@ function showButton(index, page, data) {
         const id = $(e.target).data("index");
         state.startPage = id;
 
-        clearPaginationButtons();
+        removePaginationButtons();
         showPaginationOnPage(data);
 
         if (source.list) {
@@ -339,6 +339,6 @@ function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
 
-function clearPaginationButtons() {
+function removePaginationButtons() {
     paginationContainerEl.empty();
 }
