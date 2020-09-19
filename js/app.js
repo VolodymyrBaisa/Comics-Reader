@@ -1,13 +1,25 @@
-<<<<<<< HEAD
 //API
 const api1Query = "https://project1api1.herokuapp.com";
 const api2Query = "https://project1api2.herokuapp.com";
-
 //Variable
 const state = {
     startPage: 1,
     size: 14,
     endPage: 1,
+};
+const source = {
+    list: 0,
+    category: 0,
+    categoryId: 17,
+    comicList: function () {
+        this.list = 1;
+        this.category = 0;
+    },
+    comicCategory: function (id) {
+        this.list = 0;
+        this.category = 1;
+        this.categoryId = id;
+    },
 };
 //Selector
 const comicListEl = $("#menuComicList");
@@ -30,7 +42,6 @@ class Categories {
             url: `${api2Query}/getCategoriesList`,
         });
     }
-
     async getSubCategoryComicList(subCatId, page) {
         return await $.ajax({
             method: "GET",
@@ -38,7 +49,6 @@ class Categories {
         });
     }
 }
-
 class Comic {
     async getComicList(page) {
         return await $.ajax({
@@ -47,7 +57,6 @@ class Comic {
         });
     }
 }
-
 class Search {
     async getSearchSuggestions(val) {
         return await $.ajax({
@@ -55,7 +64,6 @@ class Search {
             url: `${api1Query}/search/${val}`,
         });
     }
-
     async getSearchResults(val) {
         return await $.ajax({
             method: "GET",
@@ -67,7 +75,6 @@ class Search {
 //Init
 const cat = new Categories();
 const com = new Comic();
-
 (() => {
     //Populate Left Menu
     const catList = cat.getSubCategoriesList();
@@ -79,7 +86,6 @@ const com = new Comic();
             console.log(err);
         });
     //Show Default Content
-
     const comList = com.getComicList(1);
     comList
         .then((res) => {
@@ -87,12 +93,12 @@ const com = new Comic();
             clearPaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
         });
 })();
-
 //Populate SubCategories Left Menu
 function subCategory(subCat) {
     for (let item in subCat) {
@@ -105,7 +111,6 @@ function subCategory(subCat) {
         subMenuContainerEL.append(subMenu);
     }
 }
-
 //OnCLicFunction SubCategory
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
@@ -116,6 +121,7 @@ function onClickSubCategory(e) {
             clearPaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
+            source.comicCategory(catIndex);
         })
         .catch((err) => {
             console.log(err);
@@ -130,6 +136,7 @@ function onClickComicList() {
             clearPaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -177,7 +184,6 @@ function onClickTitleCard(e) {
         url.lastIndexOf("/") + 1
     )}`;
 }
-
 //Search For Comics
 const search = new Search();
 function onSearchSuggestions(e) {
@@ -191,11 +197,9 @@ function onSearchSuggestions(e) {
             .catch((err) => {
                 console.log(err);
             });
-
         searchSuggestionsEl.addClass("active");
     }
 }
-
 function showSearchSuggestions(data) {
     searchSuggestionsEl.empty();
     if (data !== "Not found") {
@@ -214,7 +218,6 @@ function showSearchSuggestions(data) {
         removeSuggestionPanel();
     }
 }
-
 function onHideSearchSuggestList(e) {
     if (
         !searchSuggestionsEl.is(e.target) &&
@@ -223,10 +226,8 @@ function onHideSearchSuggestList(e) {
         removeSuggestionPanel();
     }
 }
-
 function onSearchResult(e) {
     removeSuggestionPanel();
-
     const val = $(e.target).data("index");
     const res = search.getSearchResults(val);
     res.then((data) => {
@@ -235,7 +236,6 @@ function onSearchResult(e) {
         console.log(err);
     });
 }
-
 function removeSuggestionPanel() {
     searchSuggestionsEl.empty();
     searchSuggestionsEl.removeClass("active");
@@ -247,12 +247,10 @@ function showPaginationOnPage(data) {
         state.endPage = data.totalPages;
         let maxLeft = state.startPage - Math.floor(state.size / 2);
         let maxRight = state.startPage + Math.floor(state.size / 2);
-
         if (maxLeft < 1) {
             maxLeft = 1;
             maxRight = state.size;
         }
-
         if (maxRight > state.endPage) {
             maxLeft = state.endPage - (state.size - 1);
             if (maxLeft < 1) {
@@ -260,15 +258,12 @@ function showPaginationOnPage(data) {
             }
             maxRight = state.endPage;
         }
-
         for (let page = maxLeft; page <= maxRight; page++) {
             paginationContainerEl.append(showButton(page, page, data));
         }
-
         if (state.startPage != 1) {
             paginationContainerEl.prepend(showButton(1, "&#171;", data));
         }
-
         if (state.startPage != state.endPage) {
             paginationContainerEl.append(
                 showButton(state.endPage, "&#187;", data)
@@ -276,7 +271,6 @@ function showPaginationOnPage(data) {
         }
     }
 }
-
 function showButton(index, page, data) {
     const button = $(
         `<div data-index="${index}" class="page-button">${page}</div>`
@@ -284,118 +278,38 @@ function showButton(index, page, data) {
     button.click((e) => {
         const id = $(e.target).data("index");
         state.startPage = id;
-
         clearPaginationButtons();
         showPaginationOnPage(data);
-        //Add link
+        if (source.list) {
+            const comList = com.getComicList(id);
+            comList
+                .then((res) => {
+                    loadComicsOnPage(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (source.category) {
+            const catIndex = source.categoryId;
+            const getTitlesFromCategory = cat.getSubCategoryComicList(
+                catIndex,
+                id
+            );
+            getTitlesFromCategory
+                .then((data) => {
+                    loadComicsOnPage(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
         showPaginationActiveButton(id);
     });
     return button;
 }
-
 function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
-
 function clearPaginationButtons() {
     paginationContainerEl.empty();
 }
-=======
-//API
-const api1Query = "https://project1api1.herokuapp.com";
-const api2Query = "https://project1api2.herokuapp.com";
-//API1
-
-//Variable
-//Selector
-const subMenuContainerEL = $(".subMenuContainer");
-const bookTitlesEl = $(".book-titles");
-//Events
-//Class
-class Categories {
-    // async getSubCategoriesList() {
-    //     return await $.ajax({
-    //         method: "GET",
-    //         url: `${api2Query}/getCategoriesList`,
-    //     });
-    // }
-    // async getSubCategoryComicList(subCatId) {
-    //     return await $.ajax({
-    //         method: "GET",
-    //         url: `${api2Query}/getCategories/${subCatId}`,
-    //     });
-    // }
-}
-
-class Comic {
-    async getComicList(page) {
-        return await $.ajax({
-            method: "GET",
-            url: `${api1Query}/comic-list/${page}`,
-        });
-    }
-}
-//Function
-//Init
-// const cat = new Categories();
-(() => {
-    //Call categories API - Paul
-    //Call comic from API - Dannette
-    // //Populate Left Menu
-    // const catList = cat.getSubCategoriesList();
-    // catList
-    //     .then((res) => {
-    //         subCategory(res);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-    // //Show Default Content
-    // const com = new Comic();
-    // const comList = com.getComicList(1);
-    // comList
-    //     .then((res) => {
-    //         loadComicsOnPage(res);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-})();
-
-// //Populate SubCategories Left Menu
-// function subCategory(subCat) {
-//     for (let item in subCat) {
-//         const subMenu = $(`
-//         <div id="subMenuCategory" class="subMenu">
-//             <span data-index=${item} class="menu-title">${subCat[item]}</span>
-//         </div>
-//         `);
-//         subMenu.click(onClickSubCategory);
-//         subMenuContainerEL.append(subMenu);
-//     }
-// }
-
-// //OnCLicFunction SubCategory
-// function onClickSubCategory(e) {
-//     const catIndex = $(e.target).find(".menu-title").data("index");
-//     const getTitlesFromCategory = cat.getSubCategoryComicList(catIndex);
-//     console.log(catIndex, getTitlesFromCategory);
-//     loadComicsOnPage(getTitlesFromCategory);
-// }
-
-//Load Comics
-function loadComicsOnPage(data) {
-    for (let item in data) {
-        const val = data[item];
-        const titleCard = $(`
-    <div id="titleCard" class="title-card">
-        <div id="titleImage" class="image"></div>
-        <div id="title" class="title">${val.title}</div>
-        <div class="category">${val.type}</div>
-    </div>
-        `);
-        titleCard.find(".image").css("background-image", `url(${val.img})`);
-        bookTitlesEl.append(titleCard);
-    }
-}
->>>>>>> master
