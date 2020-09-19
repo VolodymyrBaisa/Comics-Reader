@@ -1,8 +1,10 @@
-.menuCategory {
+.menu-comic-list,
+.menu-category {
     position: relative;
     z-index: 10;
+    width: calc(100% + 1px);
+    transform: translate(-1px, -1px);
     pointer-events: none;
-
     .icon {
         position: absolute;
         top: 10%;
@@ -13,14 +15,14 @@
 
     .menu-title {
         position: absolute;
-        top: 13%;
-        left: 38%;
+        top: 16%;
+        left: 39%;
         color: #f4f4f4;
         font-style: normal;
         font-weight: bold;
-        font-size: 2vw;
+        font-size: 1.7vw;
     }
-
+    #menuComicList,
     #menuCategory {
         position: absolute;
         top: 0;
@@ -30,6 +32,16 @@
         z-index: 3;
     }
 }
+#menuComicList {
+    pointer-events: initial;
+    cursor: pointer;
+}
+
+.menu-category {
+    transform: translateY(-41%);
+    width: 100%;
+}
+
 //Categories
 #menuAuthor,
 #menuType,
@@ -67,7 +79,7 @@
         z-index: 2;
         margin-bottom: 1px;
         padding: 4% 4% 4% 20%;
-        transform: translateY(-110%);
+        transform: translateY(-200%);
         overflow: hidden;
         cursor: pointer;
         .menu-title {

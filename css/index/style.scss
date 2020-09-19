@@ -1,5 +1,3 @@
-$windowHeight: 925vh;
-
 @mixin flex($justify, $align, $direction) {
     display: flex;
     justify-content: $justify;
@@ -14,7 +12,12 @@ $windowHeight: 925vh;
 //Background
 .background {
     @include flex(flex-start, stretch, row);
-    min-height: $windowHeight;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
     z-index: -1;
     .part1 {
         flex: 1;
@@ -46,12 +49,12 @@ $windowHeight: 925vh;
 .container {
     @include flex(center, content, row);
     position: absolute;
-    top: 39px;
-    left: 28px;
-    right: 28px;
-    bottom: 39px;
+    margin: 39px 28px;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
-    min-height: 910vh;
+    min-height: 100%;
     background: rgba(32, 33, 54, 0.9);
     border-radius: 3.5vw;
     overflow: hidden;
