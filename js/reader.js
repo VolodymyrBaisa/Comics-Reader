@@ -6,16 +6,25 @@ const api2Query = "https://project1api2.herokuapp.com";
 
 //Variable
 
+var lastIndexOf = window.location.href.lastIndexOf("/");
+var rightPart = window.location.href.substr(lastIndexOf);
+var title = rightPart.split("=")[1];
+
 // read url 
-
-fullQueryURL = "" + "" + "";
+(()=> {
+var fullQueryURL = api1Query + "/" + title;
+console.log(fullQueryURL);
     $.ajax({
-        url:
-        method: "GET"
-    }).then(function(response){
-
+        url: fullQueryURL,
+        method: "GET",
+        success: function(result){
+            console.log(result);
+        }
     })
+    
 
+
+})();
 // get comic id from url
 // call comic API to get the relevant comic
 // create HTML elements to show it on the page (0)
