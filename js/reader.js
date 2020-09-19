@@ -12,7 +12,9 @@ fullQueryURL = "" + "" + "";
     $.ajax({
         url:
         method: "GET"
-    }).then
+    }).then(function(response){
+
+    })
 
 // get comic id from url
 // call comic API to get the relevant comic
