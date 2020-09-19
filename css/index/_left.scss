@@ -9,8 +9,13 @@
         position: absolute;
         top: 10%;
         left: 20%;
-        height: 14%;
-        width: 14%;
+    }
+
+    .list-icon,
+    .category-icon {
+        position: absolute;
+        height: 3vw;
+        width: 3vw;
     }
 
     .menu-title {
@@ -22,52 +27,22 @@
         font-weight: bold;
         font-size: 1.7vw;
     }
-    #menuComicList,
-    #menuCategory {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 50%;
-        z-index: 3;
-    }
 }
+
 #menuComicList {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40%;
     pointer-events: initial;
     cursor: pointer;
+    z-index: 10;
 }
 
 .menu-category {
-    transform: translateY(-41%);
+    transform: translateY(-42%);
     width: 100%;
-}
-
-//Categories
-#menuAuthor,
-#menuType,
-#menuYearRelease,
-#menuStatus {
-    position: relative;
-    cursor: pointer;
-    .icon {
-        position: absolute;
-        top: 10%;
-        left: 20%;
-        height: 14%;
-        width: 14%;
-        pointer-events: none;
-    }
-
-    .menu-title {
-        position: absolute;
-        top: 13%;
-        left: 38%;
-        color: #f4f4f4;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 1.9vw;
-        pointer-events: none;
-    }
 }
 
 //SubMenu
@@ -79,7 +54,7 @@
         z-index: 2;
         margin-bottom: 1px;
         padding: 4% 4% 4% 20%;
-        transform: translateY(-200%);
+        transform: translateY(-205%);
         overflow: hidden;
         cursor: pointer;
         .menu-title {

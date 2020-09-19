@@ -1,34 +1,46 @@
 .book-navigation {
     @include flex(flex-start, stretch, row);
     background: #555365;
-    border-radius: 20px;
+    border-radius: 4%/50%;
     margin-top: 1.5%;
     padding: 0.5%;
+    position: relative;
 
     .first-page,
     .before,
     .next,
     .last-page {
         margin-top: 0.8%;
-        margin-right: 2vw;
+        margin-right: 2.8vw;
         cursor: pointer;
     }
-
     .first-page {
-        margin-left: 5%;
-        width: 3vw;
+        margin-left: 1.8vw;
     }
 
-    .before {
+    .first-page-icon {
+        position: absolute;
+        top: 0.7vw;
+        left: 1.8vw;
         width: 2vw;
     }
 
-    .next {
-        width: 2vw;
+    .before-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 1.3vw;
     }
 
-    .last-page {
-        width: 3vw;
+    .next-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 1.3vw;
+    }
+
+    .last-page-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 2vw;
     }
 
     .chapter-selector {
@@ -57,10 +69,16 @@
 
         .icon {
             position: absolute;
+            top: 31%;
+            right: 4%;
+            pointer-events: none;
+        }
+
+        .chapter-select-icon {
+            position: absolute;
             top: 28%;
             right: 4%;
             width: 1.5vw;
-            pointer-events: none;
         }
     }
 }

@@ -26,8 +26,15 @@ body {
   position: absolute;
   top: 10%;
   left: 20%;
-  height: 14%;
-  width: 14%;
+}
+
+.menu-comic-list .list-icon,
+.menu-comic-list .category-icon,
+.menu-category .list-icon,
+.menu-category .category-icon {
+  position: absolute;
+  height: 3vw;
+  width: 3vw;
 }
 
 .menu-comic-list .menu-title,
@@ -41,61 +48,21 @@ body {
   font-size: 1.7vw;
 }
 
-.menu-comic-list #menuComicList,
-.menu-comic-list #menuCategory,
-.menu-category #menuComicList,
-.menu-category #menuCategory {
+#menuComicList {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  z-index: 3;
-}
-
-#menuComicList {
+  bottom: 40%;
   pointer-events: initial;
   cursor: pointer;
+  z-index: 10;
 }
 
 .menu-category {
-  -webkit-transform: translateY(-41%);
-          transform: translateY(-41%);
+  -webkit-transform: translateY(-42%);
+          transform: translateY(-42%);
   width: 100%;
-}
-
-#menuAuthor,
-#menuType,
-#menuYearRelease,
-#menuStatus {
-  position: relative;
-  cursor: pointer;
-}
-
-#menuAuthor .icon,
-#menuType .icon,
-#menuYearRelease .icon,
-#menuStatus .icon {
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  height: 14%;
-  width: 14%;
-  pointer-events: none;
-}
-
-#menuAuthor .menu-title,
-#menuType .menu-title,
-#menuYearRelease .menu-title,
-#menuStatus .menu-title {
-  position: absolute;
-  top: 13%;
-  left: 38%;
-  color: #f4f4f4;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.9vw;
-  pointer-events: none;
 }
 
 .subMenuContainer .subMenu {
@@ -117,8 +84,8 @@ body {
   z-index: 2;
   margin-bottom: 1px;
   padding: 4% 4% 4% 20%;
-  -webkit-transform: translateY(-200%);
-          transform: translateY(-200%);
+  -webkit-transform: translateY(-205%);
+          transform: translateY(-205%);
   overflow: hidden;
   cursor: pointer;
 }
