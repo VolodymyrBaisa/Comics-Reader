@@ -12,7 +12,8 @@ var title = rightPart.split("=")[1];
 
 // read url 
 (()=> {
-var fullQueryURL = api1Query + "/" + title;
+    if(title){
+var fullQueryURL = api1Query + "/comic/" + title;
 console.log(fullQueryURL);
     $.ajax({
         url: fullQueryURL,
@@ -20,10 +21,9 @@ console.log(fullQueryURL);
         success: function(result){
             console.log(result);
         }
-    })
+    });
     
-
-
+};
 })();
 // get comic id from url
 // call comic API to get the relevant comic
