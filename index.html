@@ -41,8 +41,8 @@
         <section class="container">
             <!-- Left Menu -->
             <div class="left-panel">
-                <!-- Category List -->
-                <div class="menuCategory">
+                <!-- Comic List -->
+                <div id="menuComicList" class="menu-comic-list">
                     <svg
                         viewBox="0 0 335 119"
                         fill="none"
@@ -50,6 +50,34 @@
                     >
                         <path
                             d="M335 72.3038V1C220.992 1 90.8827 0.820644 53 1C15.1172 1.17936 0.77211 30.1383 0.999983 52.5C1.22786 74.8617 1.00001 119 1.00001 119C31.7347 90.2788 51.7574 77.3045 103.654 72.3038H335Z"
+                            fill="#424151"
+                        />
+                    </svg>
+
+                    <span class="icon">
+                        <svg
+                            viewBox="0 0 42 42"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M12.25 34.8333H29.75V7.33334H12.25V34.8333ZM3.5 31.1667H10.5V11H3.5V31.1667ZM31.5 11V31.1667H38.5V11H31.5Z"
+                                fill="#F4F4F4"
+                            />
+                        </svg>
+                    </span>
+                    <span class="menu-title">Comic List</span>
+                    <div id="menuComicList"></div>
+                </div>
+                <!-- Category List -->
+                <div class="menu-category">
+                    <svg
+                        viewBox="0 0 334 117"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M101 0H334V70.5H101C53.4171 74.4989 32.3717 86.0464 0 116.5V46C36.7174 11.9831 59.4556 4.1559 101 0Z"
                             fill="#424151"
                         />
                     </svg>
@@ -75,7 +103,7 @@
             <!-- Main Title Container -->
             <div class="main">
                 <!-- Search -->
-                <div id="searchContainer" class="searchContainer">
+                <div id="searchContainer" class="search-container">
                     <span id="searchIcon" class="search-icon">
                         <svg
                             viewBox="0 0 49 49"
@@ -95,6 +123,10 @@
                         class="search"
                     />
                 </div>
+                <div
+                    id="searchSuggestions"
+                    class="search-suggestion-container"
+                ></div>
                 <!-- Header -->
                 <div class="header">
                     <span class="line-left"></span>
@@ -103,6 +135,7 @@
                 </div>
                 <!-- Title List -->
                 <div class="book-titles"></div>
+                <div class="pagination-container"></div>
             </div>
         </section>
     </body>
