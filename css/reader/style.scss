@@ -50,8 +50,8 @@
     @include flex(flex-start, center, column);
     position: absolute;
     top: 39px;
-    left: 28px;
-    right: 28px;
+    left: 10px;
+    right: 10px;
     margin-bottom: 39px;
     z-index: 1;
     min-height: calc(100vh - 39px * 2);
@@ -66,11 +66,11 @@
     .book {
         @include flex(flex-start, stretch, row);
 
-        .left-page {
+        .left-page-container {
             flex: 1;
         }
 
-        .right-page {
+        .right-page-container {
             flex: 1;
         }
     }

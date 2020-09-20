@@ -151,36 +151,28 @@ body::-webkit-scrollbar-thumb {
 }
 
 .book {
-  height: 100vh;
+  height: 130vh;
   width: 100%;
   margin: 1.5% 0 3% 0;
 }
 
-.book .left-page {
-  margin-left: 2%;
-}
-
-.book .left-page div {
+.book .left-page-container .left-page {
   float: right;
   background: #424151;
   height: 100%;
-  width: 80%;
+  width: 95%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-box-shadow: -4px 4px 5px black, inset -20px 0 90px rgba(0, 0, 0, 0.5);
           box-shadow: -4px 4px 5px black, inset -20px 0 90px rgba(0, 0, 0, 0.5);
 }
 
-.book .right-page {
-  margin-right: 2%;
-}
-
-.book .right-page div {
+.book .right-page-container .right-page {
   background: #424151;
   height: 100%;
-  width: 80%;
+  width: 95%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   -webkit-box-shadow: 0 4px 5px black, inset 80px 0 100px rgba(0, 0, 0, 0.5);
           box-shadow: 0 4px 5px black, inset 80px 0 100px rgba(0, 0, 0, 0.5);
 }
@@ -264,8 +256,8 @@ body::-webkit-scrollbar-thumb {
           flex-direction: column;
   position: absolute;
   top: 39px;
-  left: 28px;
-  right: 28px;
+  left: 10px;
+  right: 10px;
   margin-bottom: 39px;
   z-index: 1;
   min-height: calc(100vh - 39px * 2);
@@ -306,13 +298,13 @@ body::-webkit-scrollbar-thumb {
           flex-direction: row;
 }
 
-.container .book .left-page {
+.container .book .left-page-container {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
 
-.container .book .right-page {
+.container .book .right-page-container {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;

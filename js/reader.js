@@ -7,7 +7,6 @@ let pageIndex = 0;
 //Selector
 const navigationEl = $("#navigation");
 const chapterDropdownEl = $("#chapterDropdown");
-
 const leftPageEl = $("#leftPage");
 const rightPageEl = $("#rightPage");
 
@@ -99,16 +98,17 @@ function onPageChangeComicPage(e) {
                 displayPages(source, pageIndex);
                 break;
             case "before":
-                pageIndex--;
+                pageIndex = pageIndex > 0 ? --pageIndex : 0;
                 displayPages(source, pageIndex);
                 break;
             case "next":
-                pageIndex++;
+                pageIndex =
+                    pageIndex > pageIndex - 2 ? ++pageIndex : pageIndex - 2;
                 displayPages(source, pageIndex);
                 break;
             case "last-page":
-                pageIndex = source.length;
-                displayPages(source, pageIndex - 2);
+                pageIndex = source.length - 2;
+                displayPages(source, pageIndex);
                 break;
         }
     }
@@ -116,7 +116,6 @@ function onPageChangeComicPage(e) {
 }
 
 function displayPages(res, index) {
-    console.log(res, index);
     if (res && index >= 0 && index <= res.length - 2) {
         const leftPageImage = res[index].img;
         const rightPageImage = res[index + 1].img;

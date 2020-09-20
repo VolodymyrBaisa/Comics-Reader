@@ -1,30 +1,27 @@
 .book {
-    height: 100vh;
+    height: 130vh;
     width: 100%;
     margin: 1.5% 0 3% 0;
 
-    .left-page {
-        margin-left: 2%;
-
-        div {
+    .left-page-container {
+        .left-page {
             float: right;
             background: #424151;
             height: 100%;
-            width: 80%;
+            width: 95%;
             background-repeat: no-repeat;
             background-size: 100% 100%;
             box-shadow: -4px 4px 5px rgba(0, 0, 0, 1),
                 inset -20px 0 90px rgba(0, 0, 0, 0.5);
         }
     }
-    .right-page {
-        margin-right: 2%;
-        div {
+    .right-page-container {
+        .right-page {
             background: #424151;
             height: 100%;
-            width: 80%;
+            width: 95%;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: 100% 100%;
             box-shadow: 0 4px 5px rgba(0, 0, 0, 1),
                 inset 80px 0 100px rgba(0, 0, 0, 0.5);
         }
