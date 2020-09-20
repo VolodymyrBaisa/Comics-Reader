@@ -26,7 +26,7 @@
             defer
         ></script>
         <!-- Custom -->
-        <script src="js/reader.js"></script>
+        <script src="js/reader.js" defer></script>
     </head>
     <body>
         <!-- Background -->
@@ -40,9 +40,9 @@
         <!-- Container -->
         <section class="container">
             <!-- Navigation -->
-            <div class="book-navigation">
+            <div id="navigation" class="book-navigation">
                 <!-- First Page -->
-                <div id="firstPage" class="first-page">
+                <div data-index="first-page" class="first-page">
                     <svg
                         class="first-page-icon"
                         viewBox="0 0 40 40"
@@ -60,7 +60,7 @@
                     </svg>
                 </div>
                 <!-- Before -->
-                <div id="before" class="before">
+                <div data-index="before" class="before">
                     <svg
                         class="before-icon"
                         viewBox="0 0 26 40"
@@ -74,7 +74,7 @@
                     </svg>
                 </div>
                 <!-- Next -->
-                <div id="next" class="next">
+                <div data-index="next" class="next">
                     <svg
                         class="next-icon"
                         viewBox="0 0 26 40"
@@ -88,7 +88,7 @@
                     </svg>
                 </div>
                 <!-- Last Page -->
-                <div id="lastPage" class="last-page">
+                <div data-index="last-page" class="last-page">
                     <svg
                         class="last-page-icon"
                         viewBox="0 0 40 40"
@@ -102,11 +102,7 @@
                     </svg>
                 </div>
                 <div class="chapter-selector">
-                    <select name="chapter" id="chapterSelect">
-                        <option value="chapter 1">
-                            2020 iWolverine (2020) #1
-                        </option>
-                    </select>
+                    <select name="chapter" id="chapterDropdown"></select>
                     <div class="icon">
                         <svg
                             class="chapter-select-icon"
@@ -125,10 +121,10 @@
             <div class="book">
                 <!-- Pages -->
                 <div class="left-page">
-                    <div></div>
+                    <div id="leftPage"></div>
                 </div>
                 <div class="right-page">
-                    <div></div>
+                    <div id="rightPage"></div>
                 </div>
             </div>
         </section>

@@ -11,11 +11,16 @@
     .next,
     .last-page {
         margin-top: 0.8%;
-        margin-right: 2.8vw;
+        margin-right: 1.7vw;
+        width: 2vw;
+        height: 2vw;
         cursor: pointer;
+        svg {
+            pointer-events: none;
+        }
     }
     .first-page {
-        margin-left: 1.8vw;
+        margin-left: 1vw;
     }
 
     .first-page-icon {
@@ -50,12 +55,12 @@
 
         select {
             width: 25vw;
-            font-size: 1.3vw;
+            font-size: 1.2vw;
             background: #404050;
             overflow: none;
             border: none;
             border-radius: 4%/40%;
-            padding: 2% 5%;
+            padding: 2% 12% 2% 3%;
             color: #f4f4f4;
             cursor: pointer;
             /* reset */

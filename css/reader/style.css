@@ -9,6 +9,27 @@ html,
 body {
   font-family: "Montserrat", sans-serif;
   background: #000000;
+  /* Track */
+  /* Handle */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 20px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, right top, from(#f4f4f4), color-stop(15%, #424151), color-stop(50%, #291e31), color-stop(85%, #424151), to(#f4f4f4));
+  background: linear-gradient(90deg, #f4f4f4 0%, #424151 15%, #291e31 50%, #424151 85%, #f4f4f4 100%);
+  border-radius: 10px;
 }
 
 .book-navigation {
@@ -37,12 +58,21 @@ body {
 .book-navigation .next,
 .book-navigation .last-page {
   margin-top: 0.8%;
-  margin-right: 2.8vw;
+  margin-right: 1.7vw;
+  width: 2vw;
+  height: 2vw;
   cursor: pointer;
 }
 
+.book-navigation .first-page svg,
+.book-navigation .before svg,
+.book-navigation .next svg,
+.book-navigation .last-page svg {
+  pointer-events: none;
+}
+
 .book-navigation .first-page {
-  margin-left: 1.8vw;
+  margin-left: 1vw;
 }
 
 .book-navigation .first-page-icon {
@@ -90,12 +120,12 @@ body {
 
 .book-navigation .chapter-selector select {
   width: 25vw;
-  font-size: 1.3vw;
+  font-size: 1.2vw;
   background: #404050;
   overflow: none;
   border: none;
   border-radius: 4%/40%;
-  padding: 2% 5%;
+  padding: 2% 12% 2% 3%;
   color: #f4f4f4;
   cursor: pointer;
   /* reset */
@@ -132,10 +162,10 @@ body {
 
 .book .left-page div {
   float: right;
-  background: #ffffff;
+  background: #424151;
   height: 100%;
   width: 80%;
-  background: url(../../img/test-image-page-left.png) no-repeat;
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-box-shadow: -4px 4px 5px black, inset -20px 0 90px rgba(0, 0, 0, 0.5);
           box-shadow: -4px 4px 5px black, inset -20px 0 90px rgba(0, 0, 0, 0.5);
@@ -146,11 +176,11 @@ body {
 }
 
 .book .right-page div {
-  background: #ffffff;
+  background: #424151;
   height: 100%;
   width: 80%;
-  background: url(../../img/test-image-page-right.png) no-repeat;
-  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-box-shadow: 0 4px 5px black, inset 80px 0 100px rgba(0, 0, 0, 0.5);
           box-shadow: 0 4px 5px black, inset 80px 0 100px rgba(0, 0, 0, 0.5);
 }

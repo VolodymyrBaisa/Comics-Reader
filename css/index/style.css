@@ -9,6 +9,27 @@ html,
 body {
   font-family: "Montserrat", sans-serif;
   background: #000000;
+  /* Track */
+  /* Handle */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 20px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, right top, from(#f4f4f4), color-stop(15%, #424151), color-stop(50%, #291e31), color-stop(85%, #424151), to(#f4f4f4));
+  background: linear-gradient(90deg, #f4f4f4 0%, #424151 15%, #291e31 50%, #424151 85%, #f4f4f4 100%);
+  border-radius: 10px;
 }
 
 .menu-comic-list,
