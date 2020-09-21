@@ -17,6 +17,12 @@
             margin: 1% 0 0 3%;
             transform: translateY(-570%);
             cursor: pointer;
+            svg {
+                fill: #f4f4f4;
+                &:hover {
+                    fill: rgba(244, 244, 244, 0.7);
+                }
+            }
         }
     }
     .search-suggestion-container {

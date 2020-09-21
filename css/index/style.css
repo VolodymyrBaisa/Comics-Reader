@@ -186,6 +186,14 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
+.main .search-container .search-icon svg {
+  fill: #f4f4f4;
+}
+
+.main .search-container .search-icon svg:hover {
+  fill: rgba(244, 244, 244, 0.7);
+}
+
 .main .search-suggestion-container {
   position: absolute;
   top: 0;
