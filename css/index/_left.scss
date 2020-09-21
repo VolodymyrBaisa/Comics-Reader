@@ -5,6 +5,12 @@
     width: calc(100% + 1px);
     transform: translate(-1px, -1px);
     pointer-events: none;
+
+    .menu-list-background {
+        fill: #424151;
+        transition: fill 0.2s ease;
+    }
+
     .icon {
         position: absolute;
         top: 10%;
@@ -26,6 +32,12 @@
         font-style: normal;
         font-weight: bold;
         font-size: 1.7vw;
+    }
+
+    &:hover {
+        .menu-list-background {
+            fill: rgba(91, 89, 106, 0.5);
+        }
     }
 }
 
@@ -57,12 +69,17 @@
         transform: translateY(-205%);
         overflow: hidden;
         cursor: pointer;
+        transition: background 0.2s ease;
         .menu-title {
             color: #f4f4f4;
             font-size: 1.3vw;
             font-weight: bold;
             white-space: nowrap;
             pointer-events: none;
+        }
+
+        &:hover {
+            background: rgba(91, 89, 106, 0.5);
         }
     }
 }

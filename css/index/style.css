@@ -42,6 +42,13 @@ body::-webkit-scrollbar-thumb {
   pointer-events: none;
 }
 
+.menu-comic-list .menu-list-background,
+.menu-category .menu-list-background {
+  fill: #424151;
+  -webkit-transition: fill 0.2s ease;
+  transition: fill 0.2s ease;
+}
+
 .menu-comic-list .icon,
 .menu-category .icon {
   position: absolute;
@@ -67,6 +74,11 @@ body::-webkit-scrollbar-thumb {
   font-style: normal;
   font-weight: bold;
   font-size: 1.7vw;
+}
+
+.menu-comic-list:hover .menu-list-background,
+.menu-category:hover .menu-list-background {
+  fill: rgba(91, 89, 106, 0.5);
 }
 
 #menuComicList {
@@ -109,6 +121,8 @@ body::-webkit-scrollbar-thumb {
           transform: translateY(-205%);
   overflow: hidden;
   cursor: pointer;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .subMenuContainer .subMenu .menu-title {
@@ -117,6 +131,10 @@ body::-webkit-scrollbar-thumb {
   font-weight: bold;
   white-space: nowrap;
   pointer-events: none;
+}
+
+.subMenuContainer .subMenu:hover {
+  background: rgba(91, 89, 106, 0.5);
 }
 
 .main {
@@ -210,6 +228,8 @@ body::-webkit-scrollbar-thumb {
   color: #f4f4f4;
   font-size: 1.5vw;
   cursor: pointer;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .main .search-suggestion-container .search-suggestion-item:hover {
@@ -290,6 +310,8 @@ body::-webkit-scrollbar-thumb {
           flex: 0 1 16vw;
   margin: 0 2% 5% 0;
   cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .main .book-titles #titleCard .image {
@@ -319,6 +341,18 @@ body::-webkit-scrollbar-thumb {
   width: 15.2vw;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.main .book-titles #titleCard:hover {
+  -webkit-transform: translate3d(0px, -1px, 0px);
+          transform: translate3d(0px, -1px, 0px);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.main .book-titles #titleCard:hover .image {
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
 }
 
 .main .pagination-container {

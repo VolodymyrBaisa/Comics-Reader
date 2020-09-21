@@ -17,6 +17,14 @@
         cursor: pointer;
         svg {
             pointer-events: none;
+            fill: #f4f4f4;
+            transition: fill 0.2s ease;
+        }
+
+        &:hover {
+            svg {
+                fill: rgba(244, 244, 244, 0.5);
+            }
         }
     }
     .first-page {

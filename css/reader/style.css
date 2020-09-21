@@ -69,6 +69,16 @@ body::-webkit-scrollbar-thumb {
 .book-navigation .next svg,
 .book-navigation .last-page svg {
   pointer-events: none;
+  fill: #f4f4f4;
+  -webkit-transition: fill 0.2s ease;
+  transition: fill 0.2s ease;
+}
+
+.book-navigation .first-page:hover svg,
+.book-navigation .before:hover svg,
+.book-navigation .next:hover svg,
+.book-navigation .last-page:hover svg {
+  fill: rgba(244, 244, 244, 0.5);
 }
 
 .book-navigation .first-page {
