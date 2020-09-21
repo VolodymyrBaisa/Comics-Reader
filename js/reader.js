@@ -12,7 +12,8 @@ const rightPageEl = $("#rightPage");
 
 //Events
 chapterDropdownEl.change(onChangeSelectChapter);
-navigationEl.click(onPageChangeComicPage);
+navigationEl.click(onChangeComicPage);
+$(document).keydown(onChangeComicPage);
 //Class
 class Comic {
     async getComic(title) {
@@ -88,31 +89,39 @@ function parsePages(title, chapterIndex) {
         });
 }
 
-function onPageChangeComicPage(e) {
-    const buttonIndex = $(e.target).data("index");
+function onChangeComicPage(e) {
+    let buttonIndex = $(e.target).data("index");
+    buttonIndex = !buttonIndex ? e.which : buttonIndex;
     console.log(buttonIndex);
     if (source) {
         switch (buttonIndex) {
+            case 219:
+            case 81:
             case "first-page":
                 pageIndex = 0;
                 displayPages(source, pageIndex);
                 break;
+            case 37:
+            case 65:
             case "before":
                 pageIndex = pageIndex > 0 ? --pageIndex : 0;
                 displayPages(source, pageIndex);
                 break;
+            case 39:
+            case 68:
             case "next":
                 pageIndex =
                     pageIndex > pageIndex - 2 ? ++pageIndex : pageIndex - 2;
                 displayPages(source, pageIndex);
                 break;
+            case 221:
+            case 69:
             case "last-page":
                 pageIndex = source.length - 2;
                 displayPages(source, pageIndex);
                 break;
         }
     }
-    console.log(buttonIndex);
 }
 
 function displayPages(res, index) {
