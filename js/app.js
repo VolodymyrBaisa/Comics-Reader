@@ -1,7 +1,6 @@
 //API
 const api1Query = "https://project1api1.herokuapp.com";
 const api2Query = "https://project1api2.herokuapp.com";
-
 //Variable
 const state = {
     startPage: 1,
@@ -76,6 +75,21 @@ class Search {
         return await $.ajax({
             method: "GET",
             url: `${api1Query}/comic/${val}`,
+        });
+    }
+}
+
+class Images {
+    async getImageIfExists(url) {
+        return await new Promise((resolve, reject) => {
+            var img = new Image();
+            img.onload = function () {
+                resolve(url);
+            };
+            img.onerror = function () {
+                reject(`No image found. ${url}`);
+            };
+            img.src = url;
         });
     }
 }
@@ -175,19 +189,18 @@ function loadComicsOnPage(data) {
 }
 //Check If Image Is Valid
 function setImageIfValid(card, url) {
-    $.ajax({
-        url: url,
-        type: "HEAD",
-        error: () => {
+    let img = new Images();
+    img.getImageIfExists(url)
+        .then((res) => {
+            card.find(".image").css("background-image", `url(${res})`);
+        })
+        .catch((err) => {
+            console.log(err);
             card.find(".image").css(
                 "background-image",
                 `url(../../img/No_Image.png)`
             );
-        },
-        success: () => {
-            card.find(".image").css("background-image", `url(${url})`);
-        },
-    });
+        });
 }
 //Click On title Card
 function onClickTitleCard(e) {
