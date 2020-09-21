@@ -19,6 +19,7 @@
             cursor: pointer;
             svg {
                 fill: #f4f4f4;
+                transition: fill 0.2s ease;
                 &:hover {
                     fill: rgba(244, 244, 244, 0.7);
                 }

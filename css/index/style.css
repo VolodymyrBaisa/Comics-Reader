@@ -188,6 +188,8 @@ body::-webkit-scrollbar-thumb {
 
 .main .search-container .search-icon svg {
   fill: #f4f4f4;
+  -webkit-transition: fill 0.2s ease;
+  transition: fill 0.2s ease;
 }
 
 .main .search-container .search-icon svg:hover {
