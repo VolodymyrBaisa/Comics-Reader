@@ -82,6 +82,7 @@ function parsePages(title, chapterIndex) {
     pages
         .then((res) => {
             source = res;
+            pageIndex = 0;
             displayPages(res, 0);
         })
         .catch((err) => {
