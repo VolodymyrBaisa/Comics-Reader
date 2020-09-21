@@ -103,14 +103,16 @@ function onChangeComicPage(e) {
             case 37:
             case 65:
             case "before":
-                pageIndex = pageIndex > 0 ? --pageIndex : 0;
+                pageIndex = pageIndex > 0 ? (pageIndex -= 2) : 0;
                 displayPages(source, pageIndex);
                 break;
             case 39:
             case 68:
             case "next":
                 pageIndex =
-                    pageIndex > pageIndex - 2 ? ++pageIndex : pageIndex - 2;
+                    source.length - 2 > pageIndex
+                        ? (pageIndex += 2)
+                        : pageIndex;
                 displayPages(source, pageIndex);
                 break;
             case 221:
