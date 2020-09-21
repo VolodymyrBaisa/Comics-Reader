@@ -92,7 +92,6 @@ function parsePages(title, chapterIndex) {
 function onChangeComicPage(e) {
     let buttonIndex = $(e.target).data("index");
     buttonIndex = !buttonIndex ? e.which : buttonIndex;
-    console.log(buttonIndex);
     if (source) {
         switch (buttonIndex) {
             case 219:
