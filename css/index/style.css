@@ -9,6 +9,27 @@ html,
 body {
   font-family: "Montserrat", sans-serif;
   background: #000000;
+  /* Track */
+  /* Handle */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 20px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, right top, from(#f4f4f4), color-stop(15%, #424151), color-stop(50%, #291e31), color-stop(85%, #424151), to(#f4f4f4));
+  background: linear-gradient(90deg, #f4f4f4 0%, #424151 15%, #291e31 50%, #424151 85%, #f4f4f4 100%);
+  border-radius: 10px;
 }
 
 .menu-comic-list,
@@ -21,13 +42,27 @@ body {
   pointer-events: none;
 }
 
+.menu-comic-list .menu-list-background,
+.menu-category .menu-list-background {
+  fill: #424151;
+  -webkit-transition: fill 0.2s ease;
+  transition: fill 0.2s ease;
+}
+
 .menu-comic-list .icon,
 .menu-category .icon {
   position: absolute;
   top: 10%;
   left: 20%;
-  height: 14%;
-  width: 14%;
+}
+
+.menu-comic-list .list-icon,
+.menu-comic-list .category-icon,
+.menu-category .list-icon,
+.menu-category .category-icon {
+  position: absolute;
+  height: 3vw;
+  width: 3vw;
 }
 
 .menu-comic-list .menu-title,
@@ -41,61 +76,26 @@ body {
   font-size: 1.7vw;
 }
 
-.menu-comic-list #menuComicList,
-.menu-comic-list #menuCategory,
-.menu-category #menuComicList,
-.menu-category #menuCategory {
+.menu-comic-list:hover .menu-list-background,
+.menu-category:hover .menu-list-background {
+  fill: rgba(91, 89, 106, 0.5);
+}
+
+#menuComicList {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  z-index: 3;
-}
-
-#menuComicList {
+  bottom: 40%;
   pointer-events: initial;
   cursor: pointer;
+  z-index: 10;
 }
 
 .menu-category {
-  -webkit-transform: translateY(-41%);
-          transform: translateY(-41%);
+  -webkit-transform: translateY(-42%);
+          transform: translateY(-42%);
   width: 100%;
-}
-
-#menuAuthor,
-#menuType,
-#menuYearRelease,
-#menuStatus {
-  position: relative;
-  cursor: pointer;
-}
-
-#menuAuthor .icon,
-#menuType .icon,
-#menuYearRelease .icon,
-#menuStatus .icon {
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  height: 14%;
-  width: 14%;
-  pointer-events: none;
-}
-
-#menuAuthor .menu-title,
-#menuType .menu-title,
-#menuYearRelease .menu-title,
-#menuStatus .menu-title {
-  position: absolute;
-  top: 13%;
-  left: 38%;
-  color: #f4f4f4;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.9vw;
-  pointer-events: none;
 }
 
 .subMenuContainer .subMenu {
@@ -117,10 +117,12 @@ body {
   z-index: 2;
   margin-bottom: 1px;
   padding: 4% 4% 4% 20%;
-  -webkit-transform: translateY(-200%);
-          transform: translateY(-200%);
+  -webkit-transform: translateY(-205%);
+          transform: translateY(-205%);
   overflow: hidden;
   cursor: pointer;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .subMenuContainer .subMenu .menu-title {
@@ -129,6 +131,10 @@ body {
   font-weight: bold;
   white-space: nowrap;
   pointer-events: none;
+}
+
+.subMenuContainer .subMenu:hover {
+  background: rgba(91, 89, 106, 0.5);
 }
 
 .main {
@@ -180,6 +186,16 @@ body {
   cursor: pointer;
 }
 
+.main .search-container .search-icon svg {
+  fill: #f4f4f4;
+  -webkit-transition: fill 0.2s ease;
+  transition: fill 0.2s ease;
+}
+
+.main .search-container .search-icon svg:hover {
+  fill: rgba(244, 244, 244, 0.7);
+}
+
 .main .search-suggestion-container {
   position: absolute;
   top: 0;
@@ -222,6 +238,8 @@ body {
   color: #f4f4f4;
   font-size: 1.5vw;
   cursor: pointer;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .main .search-suggestion-container .search-suggestion-item:hover {
@@ -302,6 +320,8 @@ body {
           flex: 0 1 16vw;
   margin: 0 2% 5% 0;
   cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .main .book-titles #titleCard .image {
@@ -331,6 +351,18 @@ body {
   width: 15.2vw;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.main .book-titles #titleCard:hover {
+  -webkit-transform: translate3d(0px, -1px, 0px);
+          transform: translate3d(0px, -1px, 0px);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.main .book-titles #titleCard:hover .image {
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
 }
 
 .main .pagination-container {

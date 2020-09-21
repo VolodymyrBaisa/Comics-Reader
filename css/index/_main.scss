@@ -17,6 +17,13 @@
             margin: 1% 0 0 3%;
             transform: translateY(-570%);
             cursor: pointer;
+            svg {
+                fill: #f4f4f4;
+                transition: fill 0.2s ease;
+                &:hover {
+                    fill: rgba(244, 244, 244, 0.7);
+                }
+            }
         }
     }
     .search-suggestion-container {
@@ -63,6 +70,7 @@
             color: #f4f4f4;
             font-size: 1.5vw;
             cursor: pointer;
+            transition: background 0.2s ease;
             &:hover {
                 background: #31303a;
             }
@@ -124,6 +132,8 @@
             flex: 0 1 16vw;
             margin: 0 2% 5% 0;
             cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
             .image {
                 background-repeat: no-repeat;
                 background-position: center center;
@@ -149,6 +159,14 @@
                 width: 15.2vw;
                 text-overflow: ellipsis;
                 overflow: hidden;
+            }
+
+            &:hover {
+                transform: translate3d(0px, -1px, 0px);
+                transform: scale(1.1);
+                .image {
+                    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+                }
             }
         }
     }

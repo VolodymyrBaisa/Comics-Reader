@@ -26,7 +26,7 @@
             defer
         ></script>
         <!-- Custom -->
-        <script src="js/reader.js"></script>
+        <script src="js/reader.js" defer></script>
     </head>
     <body>
         <!-- Background -->
@@ -40,71 +40,67 @@
         <!-- Container -->
         <section class="container">
             <!-- Navigation -->
-            <div class="book-navigation">
+            <div id="navigation" class="book-navigation">
                 <!-- First Page -->
-                <div id="firstPage" class="first-page">
+                <div data-index="first-page" class="first-page">
                     <svg
+                        class="first-page-icon"
                         viewBox="0 0 40 40"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
                             d="M40 35.3L25.2055 20L40 4.7L35.4553 0L16.116 20L35.4553 40L40 35.3ZM0 0H6.44641V40H0V0Z"
-                            fill="#F4F4F4"
                         />
                         <path
                             d="M40 35.3L25.2055 20L40 4.7L35.4553 0L16.116 20L35.4553 40L40 35.3ZM0 0H6.44641V40H0V0Z"
-                            fill="url(#paint0_linear)"
                         />
                     </svg>
                 </div>
                 <!-- Before -->
-                <div id="before" class="before">
+                <div data-index="before" class="before">
                     <svg
+                        class="before-icon"
                         viewBox="0 0 26 40"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
                             d="M26 4.7L21.0526 0L0 20L21.0526 40L26 35.3L9.92982 20L26 4.7Z"
-                            fill="#F4F4F4"
                         />
                     </svg>
                 </div>
                 <!-- Next -->
-                <div id="next" class="next">
+                <div data-index="next" class="next">
                     <svg
+                        class="next-icon"
                         viewBox="0 0 26 40"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
                             d="M5.75708 0L1 4.7L16.4521 20L1 35.3L5.75708 40L26 20L5.75708 0Z"
-                            fill="#F4F4F4"
                         />
                     </svg>
                 </div>
                 <!-- Last Page -->
-                <div id="lastPage" class="last-page">
+                <div data-index="last-page" class="last-page">
                     <svg
+                        class="last-page-icon"
                         viewBox="0 0 40 40"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
                             d="M0 4.7L14.7945 20L0 35.3L4.54472 40L23.884 20L4.54472 0L0 4.7ZM33.5536 0H40V40H33.5536V0Z"
-                            fill="#F4F4F4"
                         />
                     </svg>
                 </div>
                 <div class="chapter-selector">
-                    <select name="chapter" id="chapterSelect">
-                        <option value="chapter 1">
-                            2020 iWolverine (2020) #1
-                        </option>
-                    </select>
+                    <select name="chapter" id="chapterDropdown"></select>
                     <div class="icon">
                         <svg
+                            class="chapter-select-icon"
                             viewBox="0 0 25 16"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -117,13 +113,13 @@
                     </div>
                 </div>
             </div>
-            <div class="book">
+            <div id="bookContainer" class="book">
                 <!-- Pages -->
-                <div class="left-page">
-                    <div></div>
+                <div id="leftPageContainer" class="left-page-container">
+                    <div id="leftPage" class="left-page"></div>
                 </div>
-                <div class="right-page">
-                    <div></div>
+                <div class="right-page-container">
+                    <div id="rightPage" class="right-page"></div>
                 </div>
             </div>
         </section>

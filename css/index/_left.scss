@@ -1,3 +1,4 @@
+
 .menu-comic-list,
 .menu-category {
     position: relative;
@@ -5,12 +6,23 @@
     width: calc(100% + 1px);
     transform: translate(-1px, -1px);
     pointer-events: none;
+
+    .menu-list-background {
+        fill: #424151;
+        transition: fill 0.2s ease;
+    }
+
     .icon {
         position: absolute;
         top: 10%;
         left: 20%;
-        height: 14%;
-        width: 14%;
+    }
+
+    .list-icon,
+    .category-icon {
+        position: absolute;
+        height: 3vw;
+        width: 3vw;
     }
 
     .menu-title {
@@ -22,52 +34,28 @@
         font-weight: bold;
         font-size: 1.7vw;
     }
-    #menuComicList,
-    #menuCategory {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 50%;
-        z-index: 3;
+
+    &:hover {
+        .menu-list-background {
+            fill: rgba(91, 89, 106, 0.5);
+        }
     }
 }
+
 #menuComicList {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40%;
     pointer-events: initial;
     cursor: pointer;
+    z-index: 10;
 }
 
 .menu-category {
-    transform: translateY(-41%);
+    transform: translateY(-42%);
     width: 100%;
-}
-
-//Categories
-#menuAuthor,
-#menuType,
-#menuYearRelease,
-#menuStatus {
-    position: relative;
-    cursor: pointer;
-    .icon {
-        position: absolute;
-        top: 10%;
-        left: 20%;
-        height: 14%;
-        width: 14%;
-        pointer-events: none;
-    }
-
-    .menu-title {
-        position: absolute;
-        top: 13%;
-        left: 38%;
-        color: #f4f4f4;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 1.9vw;
-        pointer-events: none;
-    }
 }
 
 //SubMenu
@@ -79,9 +67,10 @@
         z-index: 2;
         margin-bottom: 1px;
         padding: 4% 4% 4% 20%;
-        transform: translateY(-200%);
+        transform: translateY(-205%);
         overflow: hidden;
         cursor: pointer;
+        transition: background 0.2s ease;
         .menu-title {
             color: #f4f4f4;
             font-size: 1.3vw;
@@ -89,5 +78,10 @@
             white-space: nowrap;
             pointer-events: none;
         }
+
+        &:hover {
+            background: rgba(91, 89, 106, 0.5);
+        }
     }
 }
+

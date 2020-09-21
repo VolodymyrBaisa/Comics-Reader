@@ -7,14 +7,19 @@ const state = {
     size: 14,
     endPage: 1,
 };
+
+
 const source = {
     list: 0,
     category: 0,
     categoryId: 17,
+
+
     comicList: function () {
         this.list = 1;
         this.category = 0;
     },
+
     comicCategory: function (id) {
         this.list = 0;
         this.category = 1;
@@ -71,6 +76,21 @@ class Search {
         });
     }
 }
+
+class Images {
+    async getImageIfExists(url) {
+        return await new Promise((resolve, reject) => {
+            var img = new Image();
+            img.onload = function () {
+                resolve(url);
+            };
+            img.onerror = function () {
+                reject(`No image found. ${url}`);
+            };
+            img.src = url;
+        });
+    }
+}
 //Function
 //Init
 const cat = new Categories();
@@ -85,12 +105,13 @@ const com = new Comic();
         .catch((err) => {
             console.log(err);
         });
+
     //Show Default Content
     const comList = com.getComicList(1);
     comList
         .then((res) => {
             loadComicsOnPage(res);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
             source.comicList();
@@ -118,7 +139,7 @@ function onClickSubCategory(e) {
     getTitlesFromCategory
         .then((data) => {
             loadComicsOnPage(data);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
             source.comicCategory(catIndex);
@@ -133,7 +154,7 @@ function onClickComicList() {
     comList
         .then((res) => {
             loadComicsOnPage(res);
-            clearPaginationButtons();
+            removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
             source.comicList();
@@ -163,19 +184,18 @@ function loadComicsOnPage(data) {
 }
 //Check If Image Is Valid
 function setImageIfValid(card, url) {
-    $.ajax({
-        url: url,
-        type: "HEAD",
-        error: () => {
+    let img = new Images();
+    img.getImageIfExists(url)
+        .then((res) => {
+            card.find(".image").css("background-image", `url(${res})`);
+        })
+        .catch((err) => {
+            console.log(err);
             card.find(".image").css(
                 "background-image",
                 `url(../../img/No_Image.png)`
             );
-        },
-        success: () => {
-            card.find(".image").css("background-image", `url(${url})`);
-        },
-    });
+        });
 }
 //Click On title Card
 function onClickTitleCard(e) {
@@ -232,6 +252,7 @@ function onSearchResult(e) {
     const res = search.getSearchResults(val);
     res.then((data) => {
         loadComicsOnPage(data);
+        removePaginationButtons();
     }).catch((err) => {
         console.log(err);
     });
@@ -261,10 +282,14 @@ function showPaginationOnPage(data) {
         for (let page = maxLeft; page <= maxRight; page++) {
             paginationContainerEl.append(showButton(page, page, data));
         }
-        if (state.startPage != 1) {
+
+
+        if (state.endPage && state.startPage != 1) {
             paginationContainerEl.prepend(showButton(1, "&#171;", data));
         }
-        if (state.startPage != state.endPage) {
+
+        if (state.endPage && state.startPage != state.endPage) {
+
             paginationContainerEl.append(
                 showButton(state.endPage, "&#187;", data)
             );
@@ -278,8 +303,11 @@ function showButton(index, page, data) {
     button.click((e) => {
         const id = $(e.target).data("index");
         state.startPage = id;
-        clearPaginationButtons();
+
+        removePaginationButtons();
         showPaginationOnPage(data);
+
+
         if (source.list) {
             const comList = com.getComicList(id);
             comList
@@ -310,6 +338,9 @@ function showButton(index, page, data) {
 function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
-function clearPaginationButtons() {
+
+
+function removePaginationButtons() {
+
     paginationContainerEl.empty();
 }
