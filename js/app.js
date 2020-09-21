@@ -297,11 +297,11 @@ function showPaginationOnPage(data) {
             paginationContainerEl.append(showButton(page, page, data));
         }
 
-        if (state.startPage != 1) {
+        if (state.endPage && state.startPage != 1) {
             paginationContainerEl.prepend(showButton(1, "&#171;", data));
         }
 
-        if (state.startPage != state.endPage) {
+        if (state.endPage && state.startPage != state.endPage) {
             paginationContainerEl.append(
                 showButton(state.endPage, "&#187;", data)
             );
