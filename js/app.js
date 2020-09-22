@@ -1,6 +1,7 @@
 //API
 const api1Query = "https://project1api1.herokuapp.com";
 const api2Query = "https://project1api2.herokuapp.com";
+
 //Variable
 const state = {
     startPage: 1,
@@ -47,6 +48,7 @@ class Categories {
             url: `${api2Query}/getCategoriesList`,
         });
     }
+
     async getSubCategoryComicList(subCatId, page) {
         return await $.ajax({
             method: "GET",
@@ -54,6 +56,7 @@ class Categories {
         });
     }
 }
+
 class Comic {
     async getComicList(page) {
         return await $.ajax({
@@ -62,6 +65,7 @@ class Comic {
         });
     }
 }
+
 class Search {
     async getSearchSuggestions(val) {
         return await $.ajax({
@@ -69,6 +73,7 @@ class Search {
             url: `${api1Query}/search/${val}`,
         });
     }
+
     async getSearchResults(val) {
         return await $.ajax({
             method: "GET",
@@ -95,6 +100,7 @@ class Images {
 //Init
 const cat = new Categories();
 const com = new Comic();
+
 (() => {
     //Populate Left Menu
     const catList = cat.getSubCategoriesList();
@@ -107,6 +113,7 @@ const com = new Comic();
         });
 
     //Show Default Content
+
     const comList = com.getComicList(1);
     comList
         .then((res) => {
@@ -114,12 +121,12 @@ const com = new Comic();
             removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
-            source.comicList();
         })
         .catch((err) => {
             console.log(err);
         });
 })();
+
 //Populate SubCategories Left Menu
 function subCategory(subCat) {
     for (let item in subCat) {
@@ -132,6 +139,7 @@ function subCategory(subCat) {
         subMenuContainerEL.append(subMenu);
     }
 }
+
 //OnCLicFunction SubCategory
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
@@ -142,7 +150,6 @@ function onClickSubCategory(e) {
             removePaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
-            source.comicCategory(catIndex);
         })
         .catch((err) => {
             console.log(err);
@@ -157,7 +164,6 @@ function onClickComicList() {
             removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
-            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -204,6 +210,7 @@ function onClickTitleCard(e) {
         url.lastIndexOf("/") + 1
     )}`;
 }
+
 //Search For Comics
 const search = new Search();
 function onSearchSuggestions(e) {
@@ -217,9 +224,11 @@ function onSearchSuggestions(e) {
             .catch((err) => {
                 console.log(err);
             });
+
         searchSuggestionsEl.addClass("active");
     }
 }
+
 function showSearchSuggestions(data) {
     searchSuggestionsEl.empty();
     if (data !== "Not found") {
@@ -238,6 +247,7 @@ function showSearchSuggestions(data) {
         removeSuggestionPanel();
     }
 }
+
 function onHideSearchSuggestList(e) {
     if (
         !searchSuggestionsEl.is(e.target) &&
@@ -246,8 +256,10 @@ function onHideSearchSuggestList(e) {
         removeSuggestionPanel();
     }
 }
+
 function onSearchResult(e) {
     removeSuggestionPanel();
+
     const val = $(e.target).data("index");
     const res = search.getSearchResults(val);
     res.then((data) => {
@@ -257,6 +269,7 @@ function onSearchResult(e) {
         console.log(err);
     });
 }
+
 function removeSuggestionPanel() {
     searchSuggestionsEl.empty();
     searchSuggestionsEl.removeClass("active");
@@ -268,10 +281,12 @@ function showPaginationOnPage(data) {
         state.endPage = data.totalPages;
         let maxLeft = state.startPage - Math.floor(state.size / 2);
         let maxRight = state.startPage + Math.floor(state.size / 2);
+
         if (maxLeft < 1) {
             maxLeft = 1;
             maxRight = state.size;
         }
+
         if (maxRight > state.endPage) {
             maxLeft = state.endPage - (state.size - 1);
             if (maxLeft < 1) {
@@ -279,6 +294,7 @@ function showPaginationOnPage(data) {
             }
             maxRight = state.endPage;
         }
+
         for (let page = maxLeft; page <= maxRight; page++) {
             paginationContainerEl.append(showButton(page, page, data));
         }
@@ -296,6 +312,7 @@ function showPaginationOnPage(data) {
         }
     }
 }
+
 function showButton(index, page, data) {
     const button = $(
         `<div data-index="${index}" class="page-button">${page}</div>`
@@ -335,6 +352,7 @@ function showButton(index, page, data) {
     });
     return button;
 }
+
 function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
