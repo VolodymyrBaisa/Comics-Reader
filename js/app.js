@@ -1,7 +1,6 @@
 //API
 const api1Query = "https://project1api1.herokuapp.com";
 const api2Query = "https://project1api2.herokuapp.com";
-
 //Variable
 const state = {
     startPage: 1,
@@ -9,12 +8,10 @@ const state = {
     endPage: 1,
 };
 
-
 const source = {
     list: 0,
     category: 0,
     categoryId: 17,
-
 
     comicList: function () {
         this.list = 1;
@@ -113,7 +110,6 @@ const com = new Comic();
         });
 
     //Show Default Content
-
     const comList = com.getComicList(1);
     comList
         .then((res) => {
@@ -121,6 +117,7 @@ const com = new Comic();
             removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -150,6 +147,7 @@ function onClickSubCategory(e) {
             removePaginationButtons();
             showPaginationOnPage(data);
             showPaginationActiveButton(1);
+            source.comicCategory(catIndex);
         })
         .catch((err) => {
             console.log(err);
@@ -164,6 +162,7 @@ function onClickComicList() {
             removePaginationButtons();
             showPaginationOnPage(res);
             showPaginationActiveButton(1);
+            source.comicList();
         })
         .catch((err) => {
             console.log(err);
@@ -224,7 +223,6 @@ function onSearchSuggestions(e) {
             .catch((err) => {
                 console.log(err);
             });
-
         searchSuggestionsEl.addClass("active");
     }
 }
@@ -299,13 +297,11 @@ function showPaginationOnPage(data) {
             paginationContainerEl.append(showButton(page, page, data));
         }
 
-
         if (state.endPage && state.startPage != 1) {
             paginationContainerEl.prepend(showButton(1, "&#171;", data));
         }
 
         if (state.endPage && state.startPage != state.endPage) {
-
             paginationContainerEl.append(
                 showButton(state.endPage, "&#187;", data)
             );
@@ -323,7 +319,6 @@ function showButton(index, page, data) {
 
         removePaginationButtons();
         showPaginationOnPage(data);
-
 
         if (source.list) {
             const comList = com.getComicList(id);
@@ -357,8 +352,6 @@ function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
 
-
 function removePaginationButtons() {
-
     paginationContainerEl.empty();
 }
