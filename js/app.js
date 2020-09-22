@@ -8,12 +8,10 @@ const state = {
     endPage: 1,
 };
 
-
 const source = {
     list: 0,
     category: 0,
     categoryId: 17,
-
 
     comicList: function () {
         this.list = 1;
@@ -47,6 +45,7 @@ class Categories {
             url: `${api2Query}/getCategoriesList`,
         });
     }
+
     async getSubCategoryComicList(subCatId, page) {
         return await $.ajax({
             method: "GET",
@@ -54,6 +53,7 @@ class Categories {
         });
     }
 }
+
 class Comic {
     async getComicList(page) {
         return await $.ajax({
@@ -62,6 +62,7 @@ class Comic {
         });
     }
 }
+
 class Search {
     async getSearchSuggestions(val) {
         return await $.ajax({
@@ -69,6 +70,7 @@ class Search {
             url: `${api1Query}/search/${val}`,
         });
     }
+
     async getSearchResults(val) {
         return await $.ajax({
             method: "GET",
@@ -95,6 +97,7 @@ class Images {
 //Init
 const cat = new Categories();
 const com = new Comic();
+
 (() => {
     //Populate Left Menu
     const catList = cat.getSubCategoriesList();
@@ -120,6 +123,7 @@ const com = new Comic();
             console.log(err);
         });
 })();
+
 //Populate SubCategories Left Menu
 function subCategory(subCat) {
     for (let item in subCat) {
@@ -132,6 +136,7 @@ function subCategory(subCat) {
         subMenuContainerEL.append(subMenu);
     }
 }
+
 //OnCLicFunction SubCategory
 function onClickSubCategory(e) {
     const catIndex = $(e.target).find(".menu-title").data("index");
@@ -204,6 +209,7 @@ function onClickTitleCard(e) {
         url.lastIndexOf("/") + 1
     )}`;
 }
+
 //Search For Comics
 const search = new Search();
 function onSearchSuggestions(e) {
@@ -220,6 +226,7 @@ function onSearchSuggestions(e) {
         searchSuggestionsEl.addClass("active");
     }
 }
+
 function showSearchSuggestions(data) {
     searchSuggestionsEl.empty();
     if (data !== "Not found") {
@@ -238,6 +245,7 @@ function showSearchSuggestions(data) {
         removeSuggestionPanel();
     }
 }
+
 function onHideSearchSuggestList(e) {
     if (
         !searchSuggestionsEl.is(e.target) &&
@@ -246,8 +254,10 @@ function onHideSearchSuggestList(e) {
         removeSuggestionPanel();
     }
 }
+
 function onSearchResult(e) {
     removeSuggestionPanel();
+
     const val = $(e.target).data("index");
     const res = search.getSearchResults(val);
     res.then((data) => {
@@ -257,6 +267,7 @@ function onSearchResult(e) {
         console.log(err);
     });
 }
+
 function removeSuggestionPanel() {
     searchSuggestionsEl.empty();
     searchSuggestionsEl.removeClass("active");
@@ -268,10 +279,12 @@ function showPaginationOnPage(data) {
         state.endPage = data.totalPages;
         let maxLeft = state.startPage - Math.floor(state.size / 2);
         let maxRight = state.startPage + Math.floor(state.size / 2);
+
         if (maxLeft < 1) {
             maxLeft = 1;
             maxRight = state.size;
         }
+
         if (maxRight > state.endPage) {
             maxLeft = state.endPage - (state.size - 1);
             if (maxLeft < 1) {
@@ -279,23 +292,23 @@ function showPaginationOnPage(data) {
             }
             maxRight = state.endPage;
         }
+
         for (let page = maxLeft; page <= maxRight; page++) {
             paginationContainerEl.append(showButton(page, page, data));
         }
-
 
         if (state.endPage && state.startPage != 1) {
             paginationContainerEl.prepend(showButton(1, "&#171;", data));
         }
 
         if (state.endPage && state.startPage != state.endPage) {
-
             paginationContainerEl.append(
                 showButton(state.endPage, "&#187;", data)
             );
         }
     }
 }
+
 function showButton(index, page, data) {
     const button = $(
         `<div data-index="${index}" class="page-button">${page}</div>`
@@ -306,7 +319,6 @@ function showButton(index, page, data) {
 
         removePaginationButtons();
         showPaginationOnPage(data);
-
 
         if (source.list) {
             const comList = com.getComicList(id);
@@ -335,12 +347,11 @@ function showButton(index, page, data) {
     });
     return button;
 }
+
 function showPaginationActiveButton(id) {
     paginationContainerEl.find(`[data-index=${id}]`).addClass("active");
 }
 
-
 function removePaginationButtons() {
-
     paginationContainerEl.empty();
 }
