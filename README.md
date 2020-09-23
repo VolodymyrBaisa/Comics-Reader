@@ -1,14 +1,6 @@
 <<<<<<< HEAD
 # Project1-Comics-Reader
 =======
-# Project1-Comics-Reader
-<<<<<<< HEAD
+# 09/23/2020 - Comic Book Reader.
 
-test to see if commit is working add 
-test content
-
-#this is a test to see if this works
-9/16/2020
-=======
->>>>>>> master
->>>>>>> add-paulsbranch
+Project 1 was a coalition beetween 4 classmates focusing on 
