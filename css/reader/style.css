@@ -323,27 +323,33 @@ body::-webkit-scrollbar-thumb {
 
 /*button css*/
 #myBtn {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ26_P3r2YKXyhvSwYurKiiPpi6JspuZUsJIQ&usqp=CAU");  
+  background-position:center;
+  background-repeat:no-repeat;
   display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
+  position: fixed; Fixed/sticky position 
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color:dodgerblue; /* Set a background color */
+  background-color:none ; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
+  padding: 39px 50px; /* Some padding */
+  border-radius: 20px; /* Rounded corners */
+  font-size: 5rem; /*Increase font size*/
+  border: 1px solid;
+  box-shadow: 5px 10px red;
+  
 }
 
 #myBtn:hover {
-  background-color: gray; /* Add a dark-grey background on hover */
+  /* background-color: gray; Add a dark-grey background on hover */
 }
 /* hOme Button- Style buttons */
 .btn {
-  background-color: DodgerBlue; /* Blue background */
+  background-color:rgba(230, 21, 21, 0.9);/* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 12px 16px; /* Some padding */
@@ -351,8 +357,11 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer; /* Mouse pointer on hover */
   margin-top: 12px;
   border-radius: 10px; /* Rounded corners */
-  width: 20%;
+  width: 25%;
   text-align: center;
+  border: 1px solid;
+  box-shadow: 5px 2px rgb(238, 230, 230);
+  
 }
 
 /* Darker background on mouse-over */
