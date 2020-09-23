@@ -532,7 +532,7 @@ body::-webkit-scrollbar-thumb {
   background-color:none !; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px 15px; /* Some padding */
+  padding: 10px 20px; /* Some padding */
   border-radius: 20px; /* Rounded corners */
   font-size: 5rem; /*Increase font size*/
   border: 1px solid;
