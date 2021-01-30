@@ -23,7 +23,7 @@ class Comic {
         });
     }
 
-    async getComicChapters(title, chapter) {
+    async getComicChapter(title, chapter) {
         return await $.ajax({
             method: "GET",
             url: `${api1Query}/comic/${title}/${chapter}`,
@@ -78,7 +78,7 @@ function getCurrentSelectedChapter() {
 
 //Pages
 function parsePages(title, chapterIndex) {
-    const pages = com.getComicChapters(title, chapterIndex);
+    const pages = com.getComicChapter(title, chapterIndex);
     pages
         .then((res) => {
             source = res;
