@@ -1,5 +1,6 @@
 //API
 const api1Query = "https://project1api1.herokuapp.com";
+
 //Variable
 const title = getComicTitleFromUrl();
 let source = "";
@@ -134,3 +135,4 @@ function displayPages(res, index) {
         rightPageEl.css("background-image", `url(${rightPageImage})`);
     }
 }
+
