@@ -1,0 +1,70 @@
+@mixin flex($justify, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@import "_global.scss";
+@import "_left.scss";
+@import "_main.scss";
+
+//Background
+.background {
+    @include flex(flex-start, stretch, row);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: -1;
+    .part1 {
+        flex: 1;
+        background: url("../../img/Flash.png") no-repeat;
+        background-size: 100%;
+    }
+    .part2 {
+        flex: 1;
+        background: url("../../img/Deadpool.png") no-repeat;
+        background-size: 100%;
+    }
+    .part3 {
+        flex: 1;
+        background: url("../../img/Superman.png") no-repeat;
+        background-size: 100%;
+    }
+    .part4 {
+        flex: 1;
+        background: url("../../img/Iron-Man.png") no-repeat;
+        background-size: 100%;
+    }
+    .part5 {
+        flex: 1;
+        background: url("../../img/Ghost-Rider.png") no-repeat;
+        background-size: 100%;
+    }
+}
+
+.container {
+    @include flex(center, content, row);
+    position: absolute;
+    margin: 39px 28px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    min-height: 100%;
+    background: rgba(32, 33, 54, 0.9);
+    border-radius: 3.5vw;
+    overflow: hidden;
+
+    .left-panel {
+        flex: 1;
+        background: rgba(26, 25, 43, 0.9);
+    }
+
+    .main {
+        flex: 3.3;
+    }
+}

@@ -1,0 +1,99 @@
+
+.book-navigation {
+    @include flex(flex-start, stretch, row);
+    background: #555365;
+    border-radius: 4%/50%;
+    margin-top: 1.5%;
+    padding: 0.5%;
+    position: relative;
+
+    .first-page,
+    .before,
+    .next,
+    .last-page {
+        margin-top: 0.8%;
+        margin-right: 1.7vw;
+        width: 2vw;
+        height: 2vw;
+        cursor: pointer;
+        svg {
+            pointer-events: none;
+            fill: #f4f4f4;
+            transition: fill 0.2s ease;
+        }
+
+        &:hover {
+            svg {
+                fill: rgba(244, 244, 244, 0.5);
+            }
+        }
+    }
+    .first-page {
+        margin-left: 1vw;
+    }
+
+    .first-page-icon {
+        position: absolute;
+        top: 0.7vw;
+        left: 1.8vw;
+        width: 2vw;
+    }
+
+    .before-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 1.3vw;
+    }
+
+    .next-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 1.3vw;
+    }
+
+    .last-page-icon {
+        position: absolute;
+        top: 0.7vw;
+        width: 2vw;
+    }
+
+    .chapter-selector {
+        @include flex(flex-start, stretch, row);
+        margin: 0 1vw 0 3vw;
+        position: relative;
+
+        select {
+            width: 25vw;
+            font-size: 1.2vw;
+            background: #404050;
+            overflow: none;
+            border: none;
+            border-radius: 4%/40%;
+            padding: 2% 12% 2% 3%;
+            color: #f4f4f4;
+            cursor: pointer;
+            /* reset */
+            margin: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .icon {
+            position: absolute;
+            top: 31%;
+            right: 4%;
+            pointer-events: none;
+        }
+
+        .chapter-select-icon {
+            position: absolute;
+            top: 28%;
+            right: 4%;
+            width: 1.5vw;
+        }
+    }
+}
+
